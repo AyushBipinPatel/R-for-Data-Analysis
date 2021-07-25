@@ -1,0 +1,21 @@
+.small{font-size: 50%}
+
+.smaller{font-size: 28%}
+
+.big{font-size: 150%}
+
+.tiny{font-size: 25%}
+
+.fontcol{color: #5c0076}
+.fontcol1{color: #eeeeee}
+.yscroll{
+  
+  height: 80%;
+  overflow-y: scroll;
+}
+
+.yscroll-65{
+  
+  height: 50%;
+  overflow-y: scroll;
+}
