@@ -656,6 +656,13 @@ countdown::countdown(minutes = 7,play_sound = T,top = 0)
 
 .big[Copy and execute the following code.]
 
+```{r eval=FALSE}
+install.packages("palmerpenguins") # dont run this if already installed
+
+library(palmerpenguins) # dont run if already loaded
+```
+
+
 ```{r}
 collected_data <- list(
   rnorm(25,51,6.5),
@@ -679,13 +686,15 @@ class: top, left
 
 # The Missing value 
 
+.yscroll[
+
 .left-column[
 
 <iframe src="https://giphy.com/embed/26hkhPJ5hmdD87HYA" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/kitchen-looney-tunes-empty-26hkhPJ5hmdD87HYA">via GIPHY</a></p>
 
 ]
 
-.yscroll[
+
 
 .right-column[
 
