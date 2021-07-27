@@ -65,7 +65,7 @@ _Slides_: [Data Wrangling](https://ayushbipinpatel.github.io/R-for-Data-Analysis
 
 In their next step the participants will be introduced to {ggplot2}. This is where they will learn to make charts to communicate their data insights.
 
-_Slides_: [Data Visualization]()
+_Slides_: [Data Visualization](https://ayushbipinpatel.github.io/R-for-Data-Analysis/data-wrangling.html)
 
 <aside>
 ![Build a Masterpiece by @allison](https://raw.githubusercontent.com/allisonhorst/stats-illustrations/master/rstats-artwork/ggplot2_masterpiece.png){width=100%}
