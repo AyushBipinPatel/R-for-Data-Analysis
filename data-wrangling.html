@@ -188,7 +188,7 @@ class: top,left
 
 .panel[.panel-name[Data]
 
-The Storms data:
+The starwars data:
 
 &lt;div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:400px; overflow-x: scroll; width:100%; "&gt;&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
@@ -3818,7 +3818,7 @@ select(starwars,
 select(penguins,islands, c(sex,year))
 ```
    
-<div class="countdown" id="timer_60ffea33" style="top:0;right:0;" data-warnwhen="0">
+<div class="countdown" id="timer_61011908" style="top:0;right:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -4067,13 +4067,212 @@ count(starwars, homeworld)
 count(starwars, homeworld,sort = T)
 ```
 
-
-```r
-count(starwars, homeworld,sort = T) %&gt;%
-knitr::kable()%&gt;%
-kableExtra::kable_styling()%&gt;%
-scroll_box(width = "100%", height = "400px")
-```
+&lt;div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:400px; overflow-x: scroll; width:100%; "&gt;&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"&gt; homeworld &lt;/th&gt;
+   &lt;th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"&gt; n &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Naboo &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 11 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Tatooine &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Alderaan &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Coruscant &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Kamino &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Corellia &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Kashyyyk &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Mirial &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Ryloth &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Aleen Minor &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Bespin &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Bestine IV &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Cato Neimoidia &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Cerea &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Champala &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Chandrila &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Concord Dawn &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Dathomir &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Dorin &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Endor &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Eriadu &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Geonosis &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Glee Anselm &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Haruun Kal &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Iktotch &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Iridonia &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Kalee &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Malastare &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Mon Cala &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Muunilinst &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Nal Hutta &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Ojom &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Quermia &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Rodia &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Serenno &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Shili &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Skako &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Socorro &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Stewjon &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Sullust &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Toydaria &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Trandosha &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Troiken &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Tund &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Umbara &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Utapau &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Vulpter &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Zolan &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/div&gt;
 
 
 ]
@@ -8909,7 +9108,7 @@ Use the `penguins` data to get do the following
     + that records the mass of a penguin in Kilograms 
     + column that classifies an observation as "fluffy" if it has mass more than 4500, otherwise as "not fluffy" HINT: use the `ifelse` function
 
-<div class="countdown" id="timer_60ffebfe" style="top:0;right:0;" data-warnwhen="0">
+<div class="countdown" id="timer_61011899" style="top:0;right:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -9194,7 +9393,7 @@ Write code to :
   + median body mass
   + the max bill lenght (HINT: use the `max` function)
   
-<div class="countdown" id="timer_60ffea42" style="top:0;right:0;" data-warnwhen="0">
+<div class="countdown" id="timer_6101180b" style="top:0;right:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -9324,18 +9523,18 @@ Peeping into the pipe
 
 ```
 ## # A tibble: 344 x 8
-##    species island   bill_length_mm bill_depth_mm flipper_length_~ body_mass_g
-##    &lt;fct&gt;   &lt;fct&gt;             &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt;
-##  1 Adelie  Torgers~           39.1          18.7              181        3750
-##  2 Adelie  Torgers~           39.5          17.4              186        3800
-##  3 Adelie  Torgers~           40.3          18                195        3250
-##  4 Adelie  Torgers~           NA            NA                 NA          NA
-##  5 Adelie  Torgers~           36.7          19.3              193        3450
-##  6 Adelie  Torgers~           39.3          20.6              190        3650
-##  7 Adelie  Torgers~           38.9          17.8              181        3625
-##  8 Adelie  Torgers~           39.2          19.6              195        4675
-##  9 Adelie  Torgers~           34.1          18.1              193        3475
-## 10 Adelie  Torgers~           42            20.2              190        4250
+##    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 Adelie  Torgersen           39.1          18.7               181        3750
+##  2 Adelie  Torgersen           39.5          17.4               186        3800
+##  3 Adelie  Torgersen           40.3          18                 195        3250
+##  4 Adelie  Torgersen           NA            NA                  NA          NA
+##  5 Adelie  Torgersen           36.7          19.3               193        3450
+##  6 Adelie  Torgersen           39.3          20.6               190        3650
+##  7 Adelie  Torgersen           38.9          17.8               181        3625
+##  8 Adelie  Torgersen           39.2          19.6               195        4675
+##  9 Adelie  Torgersen           34.1          18.1               193        3475
+## 10 Adelie  Torgersen           42            20.2               190        4250
 ## # ... with 334 more rows, and 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;
 ```
 ]
@@ -9496,7 +9695,7 @@ Write code to (use ` %&gt;% ` operator) :
 
   + For cars that have .big[manual transmission],Find the .big[grouped average Miles per gallon for cars with various cylinders]. 
 
-<div class="countdown" id="timer_60ffebe7" style="top:0;right:0;" data-warnwhen="0">
+<div class="countdown" id="timer_610117cd" style="top:0;right:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -9715,7 +9914,7 @@ write a code to create a new column that takes the value:
   + _Fluffy_ if the body mass of the penguin is 4751-6300
   + Find out the frequency of the values that this new variable takes (HINT: use the `count` funciton)
   
-<div class="countdown" id="timer_60ffeb60" style="top:0;right:0;" data-warnwhen="0">
+<div class="countdown" id="timer_610118f5" style="top:0;right:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">07</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -9860,7 +10059,8 @@ Copy and execute the following code:
 tibble(
   mon = rep(month.name,4),
   revenue = rnorm(48,50000,12),
-  region = rep(c("EAST","WEST","NORTH","SOUTH"),12)
+  region = c(rep("EAST",12),rep("WEST",12),
+             rep("NORTH",12),rep("SOUTH",12))
 ) -&gt; revenue_monthly
 ```
 
@@ -9868,7 +10068,14 @@ Use the `revenue_monthly data`
 
   + Write code that will `widen` the data in a manner that values taken by the `region` column become variables.
 
+Also using `revenue_monthly`,
+
   + Write code to find the monthly total revenue for the `EAST` region.
+
+<div class="countdown" id="timer_61011934" style="top:0;right:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">07</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
 
 ---
 
@@ -10040,12 +10247,12 @@ class: top, left
 
 
 
-<div id="sqsqogqkvn" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="visrjfeuik" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#sqsqogqkvn .gt_table {
+#visrjfeuik .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -10070,7 +10277,7 @@ class: top, left
   border-left-color: #D3D3D3;
 }
 
-#sqsqogqkvn .gt_heading {
+#visrjfeuik .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -10082,7 +10289,7 @@ class: top, left
   border-right-color: #D3D3D3;
 }
 
-#sqsqogqkvn .gt_title {
+#visrjfeuik .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -10092,7 +10299,7 @@ class: top, left
   border-bottom-width: 0;
 }
 
-#sqsqogqkvn .gt_subtitle {
+#visrjfeuik .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -10102,13 +10309,13 @@ class: top, left
   border-top-width: 0;
 }
 
-#sqsqogqkvn .gt_bottom_border {
+#visrjfeuik .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#sqsqogqkvn .gt_col_headings {
+#visrjfeuik .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -10123,7 +10330,7 @@ class: top, left
   border-right-color: #D3D3D3;
 }
 
-#sqsqogqkvn .gt_col_heading {
+#visrjfeuik .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -10143,7 +10350,7 @@ class: top, left
   overflow-x: hidden;
 }
 
-#sqsqogqkvn .gt_column_spanner_outer {
+#visrjfeuik .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -10155,15 +10362,15 @@ class: top, left
   padding-right: 4px;
 }
 
-#sqsqogqkvn .gt_column_spanner_outer:first-child {
+#visrjfeuik .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#sqsqogqkvn .gt_column_spanner_outer:last-child {
+#visrjfeuik .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#sqsqogqkvn .gt_column_spanner {
+#visrjfeuik .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -10175,7 +10382,7 @@ class: top, left
   width: 100%;
 }
 
-#sqsqogqkvn .gt_group_heading {
+#visrjfeuik .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -10197,7 +10404,7 @@ class: top, left
   vertical-align: middle;
 }
 
-#sqsqogqkvn .gt_empty_group_heading {
+#visrjfeuik .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -10212,15 +10419,15 @@ class: top, left
   vertical-align: middle;
 }
 
-#sqsqogqkvn .gt_from_md > :first-child {
+#visrjfeuik .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#sqsqogqkvn .gt_from_md > :last-child {
+#visrjfeuik .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#sqsqogqkvn .gt_row {
+#visrjfeuik .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -10239,7 +10446,7 @@ class: top, left
   overflow-x: hidden;
 }
 
-#sqsqogqkvn .gt_stub {
+#visrjfeuik .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -10251,7 +10458,7 @@ class: top, left
   padding-left: 12px;
 }
 
-#sqsqogqkvn .gt_summary_row {
+#visrjfeuik .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -10261,7 +10468,7 @@ class: top, left
   padding-right: 5px;
 }
 
-#sqsqogqkvn .gt_first_summary_row {
+#visrjfeuik .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -10271,7 +10478,7 @@ class: top, left
   border-top-color: #D3D3D3;
 }
 
-#sqsqogqkvn .gt_grand_summary_row {
+#visrjfeuik .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -10281,7 +10488,7 @@ class: top, left
   padding-right: 5px;
 }
 
-#sqsqogqkvn .gt_first_grand_summary_row {
+#visrjfeuik .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -10291,11 +10498,11 @@ class: top, left
   border-top-color: #D3D3D3;
 }
 
-#sqsqogqkvn .gt_striped {
+#visrjfeuik .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#sqsqogqkvn .gt_table_body {
+#visrjfeuik .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -10304,7 +10511,7 @@ class: top, left
   border-bottom-color: #D3D3D3;
 }
 
-#sqsqogqkvn .gt_footnotes {
+#visrjfeuik .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -10318,13 +10525,13 @@ class: top, left
   border-right-color: #D3D3D3;
 }
 
-#sqsqogqkvn .gt_footnote {
+#visrjfeuik .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#sqsqogqkvn .gt_sourcenotes {
+#visrjfeuik .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -10338,41 +10545,41 @@ class: top, left
   border-right-color: #D3D3D3;
 }
 
-#sqsqogqkvn .gt_sourcenote {
+#visrjfeuik .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#sqsqogqkvn .gt_left {
+#visrjfeuik .gt_left {
   text-align: left;
 }
 
-#sqsqogqkvn .gt_center {
+#visrjfeuik .gt_center {
   text-align: center;
 }
 
-#sqsqogqkvn .gt_right {
+#visrjfeuik .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#sqsqogqkvn .gt_font_normal {
+#visrjfeuik .gt_font_normal {
   font-weight: normal;
 }
 
-#sqsqogqkvn .gt_font_bold {
+#visrjfeuik .gt_font_bold {
   font-weight: bold;
 }
 
-#sqsqogqkvn .gt_font_italic {
+#visrjfeuik .gt_font_italic {
   font-style: italic;
 }
 
-#sqsqogqkvn .gt_super {
+#visrjfeuik .gt_super {
   font-size: 65%;
 }
 
-#sqsqogqkvn .gt_footnote_marks {
+#visrjfeuik .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -10459,12 +10666,12 @@ ex_unruly2 %&gt;%
   )
 ```
 
-<div id="yaolmrtvgh" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="anhtmhpkgt" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#yaolmrtvgh .gt_table {
+#anhtmhpkgt .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -10489,7 +10696,7 @@ ex_unruly2 %&gt;%
   border-left-color: #D3D3D3;
 }
 
-#yaolmrtvgh .gt_heading {
+#anhtmhpkgt .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -10501,7 +10708,7 @@ ex_unruly2 %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#yaolmrtvgh .gt_title {
+#anhtmhpkgt .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -10511,7 +10718,7 @@ ex_unruly2 %&gt;%
   border-bottom-width: 0;
 }
 
-#yaolmrtvgh .gt_subtitle {
+#anhtmhpkgt .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -10521,13 +10728,13 @@ ex_unruly2 %&gt;%
   border-top-width: 0;
 }
 
-#yaolmrtvgh .gt_bottom_border {
+#anhtmhpkgt .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#yaolmrtvgh .gt_col_headings {
+#anhtmhpkgt .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -10542,7 +10749,7 @@ ex_unruly2 %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#yaolmrtvgh .gt_col_heading {
+#anhtmhpkgt .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -10562,7 +10769,7 @@ ex_unruly2 %&gt;%
   overflow-x: hidden;
 }
 
-#yaolmrtvgh .gt_column_spanner_outer {
+#anhtmhpkgt .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -10574,15 +10781,15 @@ ex_unruly2 %&gt;%
   padding-right: 4px;
 }
 
-#yaolmrtvgh .gt_column_spanner_outer:first-child {
+#anhtmhpkgt .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#yaolmrtvgh .gt_column_spanner_outer:last-child {
+#anhtmhpkgt .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#yaolmrtvgh .gt_column_spanner {
+#anhtmhpkgt .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -10594,7 +10801,7 @@ ex_unruly2 %&gt;%
   width: 100%;
 }
 
-#yaolmrtvgh .gt_group_heading {
+#anhtmhpkgt .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -10616,7 +10823,7 @@ ex_unruly2 %&gt;%
   vertical-align: middle;
 }
 
-#yaolmrtvgh .gt_empty_group_heading {
+#anhtmhpkgt .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -10631,15 +10838,15 @@ ex_unruly2 %&gt;%
   vertical-align: middle;
 }
 
-#yaolmrtvgh .gt_from_md > :first-child {
+#anhtmhpkgt .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#yaolmrtvgh .gt_from_md > :last-child {
+#anhtmhpkgt .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#yaolmrtvgh .gt_row {
+#anhtmhpkgt .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -10658,7 +10865,7 @@ ex_unruly2 %&gt;%
   overflow-x: hidden;
 }
 
-#yaolmrtvgh .gt_stub {
+#anhtmhpkgt .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -10670,7 +10877,7 @@ ex_unruly2 %&gt;%
   padding-left: 12px;
 }
 
-#yaolmrtvgh .gt_summary_row {
+#anhtmhpkgt .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -10680,7 +10887,7 @@ ex_unruly2 %&gt;%
   padding-right: 5px;
 }
 
-#yaolmrtvgh .gt_first_summary_row {
+#anhtmhpkgt .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -10690,7 +10897,7 @@ ex_unruly2 %&gt;%
   border-top-color: #D3D3D3;
 }
 
-#yaolmrtvgh .gt_grand_summary_row {
+#anhtmhpkgt .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -10700,7 +10907,7 @@ ex_unruly2 %&gt;%
   padding-right: 5px;
 }
 
-#yaolmrtvgh .gt_first_grand_summary_row {
+#anhtmhpkgt .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -10710,11 +10917,11 @@ ex_unruly2 %&gt;%
   border-top-color: #D3D3D3;
 }
 
-#yaolmrtvgh .gt_striped {
+#anhtmhpkgt .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#yaolmrtvgh .gt_table_body {
+#anhtmhpkgt .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -10723,7 +10930,7 @@ ex_unruly2 %&gt;%
   border-bottom-color: #D3D3D3;
 }
 
-#yaolmrtvgh .gt_footnotes {
+#anhtmhpkgt .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -10737,13 +10944,13 @@ ex_unruly2 %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#yaolmrtvgh .gt_footnote {
+#anhtmhpkgt .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#yaolmrtvgh .gt_sourcenotes {
+#anhtmhpkgt .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -10757,41 +10964,41 @@ ex_unruly2 %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#yaolmrtvgh .gt_sourcenote {
+#anhtmhpkgt .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#yaolmrtvgh .gt_left {
+#anhtmhpkgt .gt_left {
   text-align: left;
 }
 
-#yaolmrtvgh .gt_center {
+#anhtmhpkgt .gt_center {
   text-align: center;
 }
 
-#yaolmrtvgh .gt_right {
+#anhtmhpkgt .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#yaolmrtvgh .gt_font_normal {
+#anhtmhpkgt .gt_font_normal {
   font-weight: normal;
 }
 
-#yaolmrtvgh .gt_font_bold {
+#anhtmhpkgt .gt_font_bold {
   font-weight: bold;
 }
 
-#yaolmrtvgh .gt_font_italic {
+#anhtmhpkgt .gt_font_italic {
   font-style: italic;
 }
 
-#yaolmrtvgh .gt_super {
+#anhtmhpkgt .gt_super {
   font-size: 65%;
 }
 
-#yaolmrtvgh .gt_footnote_marks {
+#anhtmhpkgt .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -10839,12 +11046,12 @@ ex_unruly2 %&gt;%
     )
 ```
 
-<div id="tkboqcqnee" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="qzrrodrkcz" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#tkboqcqnee .gt_table {
+#qzrrodrkcz .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -10869,7 +11076,7 @@ ex_unruly2 %&gt;%
   border-left-color: #D3D3D3;
 }
 
-#tkboqcqnee .gt_heading {
+#qzrrodrkcz .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -10881,7 +11088,7 @@ ex_unruly2 %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#tkboqcqnee .gt_title {
+#qzrrodrkcz .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -10891,7 +11098,7 @@ ex_unruly2 %&gt;%
   border-bottom-width: 0;
 }
 
-#tkboqcqnee .gt_subtitle {
+#qzrrodrkcz .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -10901,13 +11108,13 @@ ex_unruly2 %&gt;%
   border-top-width: 0;
 }
 
-#tkboqcqnee .gt_bottom_border {
+#qzrrodrkcz .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#tkboqcqnee .gt_col_headings {
+#qzrrodrkcz .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -10922,7 +11129,7 @@ ex_unruly2 %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#tkboqcqnee .gt_col_heading {
+#qzrrodrkcz .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -10942,7 +11149,7 @@ ex_unruly2 %&gt;%
   overflow-x: hidden;
 }
 
-#tkboqcqnee .gt_column_spanner_outer {
+#qzrrodrkcz .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -10954,15 +11161,15 @@ ex_unruly2 %&gt;%
   padding-right: 4px;
 }
 
-#tkboqcqnee .gt_column_spanner_outer:first-child {
+#qzrrodrkcz .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#tkboqcqnee .gt_column_spanner_outer:last-child {
+#qzrrodrkcz .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#tkboqcqnee .gt_column_spanner {
+#qzrrodrkcz .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -10974,7 +11181,7 @@ ex_unruly2 %&gt;%
   width: 100%;
 }
 
-#tkboqcqnee .gt_group_heading {
+#qzrrodrkcz .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -10996,7 +11203,7 @@ ex_unruly2 %&gt;%
   vertical-align: middle;
 }
 
-#tkboqcqnee .gt_empty_group_heading {
+#qzrrodrkcz .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -11011,15 +11218,15 @@ ex_unruly2 %&gt;%
   vertical-align: middle;
 }
 
-#tkboqcqnee .gt_from_md > :first-child {
+#qzrrodrkcz .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#tkboqcqnee .gt_from_md > :last-child {
+#qzrrodrkcz .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#tkboqcqnee .gt_row {
+#qzrrodrkcz .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -11038,7 +11245,7 @@ ex_unruly2 %&gt;%
   overflow-x: hidden;
 }
 
-#tkboqcqnee .gt_stub {
+#qzrrodrkcz .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -11050,7 +11257,7 @@ ex_unruly2 %&gt;%
   padding-left: 12px;
 }
 
-#tkboqcqnee .gt_summary_row {
+#qzrrodrkcz .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -11060,7 +11267,7 @@ ex_unruly2 %&gt;%
   padding-right: 5px;
 }
 
-#tkboqcqnee .gt_first_summary_row {
+#qzrrodrkcz .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -11070,7 +11277,7 @@ ex_unruly2 %&gt;%
   border-top-color: #D3D3D3;
 }
 
-#tkboqcqnee .gt_grand_summary_row {
+#qzrrodrkcz .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -11080,7 +11287,7 @@ ex_unruly2 %&gt;%
   padding-right: 5px;
 }
 
-#tkboqcqnee .gt_first_grand_summary_row {
+#qzrrodrkcz .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -11090,11 +11297,11 @@ ex_unruly2 %&gt;%
   border-top-color: #D3D3D3;
 }
 
-#tkboqcqnee .gt_striped {
+#qzrrodrkcz .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#tkboqcqnee .gt_table_body {
+#qzrrodrkcz .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -11103,7 +11310,7 @@ ex_unruly2 %&gt;%
   border-bottom-color: #D3D3D3;
 }
 
-#tkboqcqnee .gt_footnotes {
+#qzrrodrkcz .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -11117,13 +11324,13 @@ ex_unruly2 %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#tkboqcqnee .gt_footnote {
+#qzrrodrkcz .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#tkboqcqnee .gt_sourcenotes {
+#qzrrodrkcz .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -11137,41 +11344,41 @@ ex_unruly2 %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#tkboqcqnee .gt_sourcenote {
+#qzrrodrkcz .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#tkboqcqnee .gt_left {
+#qzrrodrkcz .gt_left {
   text-align: left;
 }
 
-#tkboqcqnee .gt_center {
+#qzrrodrkcz .gt_center {
   text-align: center;
 }
 
-#tkboqcqnee .gt_right {
+#qzrrodrkcz .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#tkboqcqnee .gt_font_normal {
+#qzrrodrkcz .gt_font_normal {
   font-weight: normal;
 }
 
-#tkboqcqnee .gt_font_bold {
+#qzrrodrkcz .gt_font_bold {
   font-weight: bold;
 }
 
-#tkboqcqnee .gt_font_italic {
+#qzrrodrkcz .gt_font_italic {
   font-style: italic;
 }
 
-#tkboqcqnee .gt_super {
+#qzrrodrkcz .gt_super {
   font-size: 65%;
 }
 
-#tkboqcqnee .gt_footnote_marks {
+#qzrrodrkcz .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -11225,7 +11432,7 @@ tibble(
            "Sir Benegal Rama Rau", "K.G. Ambegaonkar", "H.V.R. Ingeyangar", 
            "P.C. Bhattacharaya", "Laxmi kant Jha", "B.N. Adarkar"),
   data_joining = c("1 April,1935", "1 July,1937", "11 August,1943", "1 July,1949",
-                   "14 January,1957", "1 March,1957","1 March 1962","1 July,1967",
+                   "14 January,1957", "1 March,1957","1 March,1962","1 July,1967",
                    "4 May,1970")
 ) -&gt; data_rbi_govs ### data from https://en.wikipedia.org/wiki/List_of_governors_of_the_Reserve_Bank_of_India
 
@@ -11237,7 +11444,7 @@ tibble(
 
   + Write code to change the data format in a manner where year of joining and day-month of joining are separate columns.
   
-<div class="countdown" id="timer_60ffe94b" style="top:0;right:0;" data-warnwhen="0">
+<div class="countdown" id="timer_610117a8" style="top:0;right:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -11256,12 +11463,12 @@ A quick tour of what can be done, __not what/when should be done.__
 
 
 
-<div id="pvrmhghbmo" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="oiqfjgcrdx" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#pvrmhghbmo .gt_table {
+#oiqfjgcrdx .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -11286,7 +11493,7 @@ A quick tour of what can be done, __not what/when should be done.__
   border-left-color: #D3D3D3;
 }
 
-#pvrmhghbmo .gt_heading {
+#oiqfjgcrdx .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -11298,7 +11505,7 @@ A quick tour of what can be done, __not what/when should be done.__
   border-right-color: #D3D3D3;
 }
 
-#pvrmhghbmo .gt_title {
+#oiqfjgcrdx .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -11308,7 +11515,7 @@ A quick tour of what can be done, __not what/when should be done.__
   border-bottom-width: 0;
 }
 
-#pvrmhghbmo .gt_subtitle {
+#oiqfjgcrdx .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -11318,13 +11525,13 @@ A quick tour of what can be done, __not what/when should be done.__
   border-top-width: 0;
 }
 
-#pvrmhghbmo .gt_bottom_border {
+#oiqfjgcrdx .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#pvrmhghbmo .gt_col_headings {
+#oiqfjgcrdx .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -11339,7 +11546,7 @@ A quick tour of what can be done, __not what/when should be done.__
   border-right-color: #D3D3D3;
 }
 
-#pvrmhghbmo .gt_col_heading {
+#oiqfjgcrdx .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -11359,7 +11566,7 @@ A quick tour of what can be done, __not what/when should be done.__
   overflow-x: hidden;
 }
 
-#pvrmhghbmo .gt_column_spanner_outer {
+#oiqfjgcrdx .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -11371,15 +11578,15 @@ A quick tour of what can be done, __not what/when should be done.__
   padding-right: 4px;
 }
 
-#pvrmhghbmo .gt_column_spanner_outer:first-child {
+#oiqfjgcrdx .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#pvrmhghbmo .gt_column_spanner_outer:last-child {
+#oiqfjgcrdx .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#pvrmhghbmo .gt_column_spanner {
+#oiqfjgcrdx .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -11391,7 +11598,7 @@ A quick tour of what can be done, __not what/when should be done.__
   width: 100%;
 }
 
-#pvrmhghbmo .gt_group_heading {
+#oiqfjgcrdx .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -11413,7 +11620,7 @@ A quick tour of what can be done, __not what/when should be done.__
   vertical-align: middle;
 }
 
-#pvrmhghbmo .gt_empty_group_heading {
+#oiqfjgcrdx .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -11428,15 +11635,15 @@ A quick tour of what can be done, __not what/when should be done.__
   vertical-align: middle;
 }
 
-#pvrmhghbmo .gt_from_md > :first-child {
+#oiqfjgcrdx .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#pvrmhghbmo .gt_from_md > :last-child {
+#oiqfjgcrdx .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#pvrmhghbmo .gt_row {
+#oiqfjgcrdx .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -11455,7 +11662,7 @@ A quick tour of what can be done, __not what/when should be done.__
   overflow-x: hidden;
 }
 
-#pvrmhghbmo .gt_stub {
+#oiqfjgcrdx .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -11467,7 +11674,7 @@ A quick tour of what can be done, __not what/when should be done.__
   padding-left: 12px;
 }
 
-#pvrmhghbmo .gt_summary_row {
+#oiqfjgcrdx .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -11477,7 +11684,7 @@ A quick tour of what can be done, __not what/when should be done.__
   padding-right: 5px;
 }
 
-#pvrmhghbmo .gt_first_summary_row {
+#oiqfjgcrdx .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -11487,7 +11694,7 @@ A quick tour of what can be done, __not what/when should be done.__
   border-top-color: #D3D3D3;
 }
 
-#pvrmhghbmo .gt_grand_summary_row {
+#oiqfjgcrdx .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -11497,7 +11704,7 @@ A quick tour of what can be done, __not what/when should be done.__
   padding-right: 5px;
 }
 
-#pvrmhghbmo .gt_first_grand_summary_row {
+#oiqfjgcrdx .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -11507,11 +11714,11 @@ A quick tour of what can be done, __not what/when should be done.__
   border-top-color: #D3D3D3;
 }
 
-#pvrmhghbmo .gt_striped {
+#oiqfjgcrdx .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#pvrmhghbmo .gt_table_body {
+#oiqfjgcrdx .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -11520,7 +11727,7 @@ A quick tour of what can be done, __not what/when should be done.__
   border-bottom-color: #D3D3D3;
 }
 
-#pvrmhghbmo .gt_footnotes {
+#oiqfjgcrdx .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -11534,13 +11741,13 @@ A quick tour of what can be done, __not what/when should be done.__
   border-right-color: #D3D3D3;
 }
 
-#pvrmhghbmo .gt_footnote {
+#oiqfjgcrdx .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#pvrmhghbmo .gt_sourcenotes {
+#oiqfjgcrdx .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -11554,41 +11761,41 @@ A quick tour of what can be done, __not what/when should be done.__
   border-right-color: #D3D3D3;
 }
 
-#pvrmhghbmo .gt_sourcenote {
+#oiqfjgcrdx .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#pvrmhghbmo .gt_left {
+#oiqfjgcrdx .gt_left {
   text-align: left;
 }
 
-#pvrmhghbmo .gt_center {
+#oiqfjgcrdx .gt_center {
   text-align: center;
 }
 
-#pvrmhghbmo .gt_right {
+#oiqfjgcrdx .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#pvrmhghbmo .gt_font_normal {
+#oiqfjgcrdx .gt_font_normal {
   font-weight: normal;
 }
 
-#pvrmhghbmo .gt_font_bold {
+#oiqfjgcrdx .gt_font_bold {
   font-weight: bold;
 }
 
-#pvrmhghbmo .gt_font_italic {
+#oiqfjgcrdx .gt_font_italic {
   font-style: italic;
 }
 
-#pvrmhghbmo .gt_super {
+#oiqfjgcrdx .gt_super {
   font-size: 65%;
 }
 
-#pvrmhghbmo .gt_footnote_marks {
+#oiqfjgcrdx .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;

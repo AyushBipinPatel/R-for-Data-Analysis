@@ -204,7 +204,7 @@ class: top,left
 
 .panel[.panel-name[Data]
 
-The Storms data:
+The starwars data:
 
 ```{r echo=FALSE}
 starwars %>%
@@ -360,7 +360,7 @@ scroll_box(width = "100%", height = "400px")
 count(starwars, homeworld,sort = T)
 ```
 
-```{r eval=FALSE}
+```{r echo=FALSE}
 count(starwars, homeworld,sort = T) %>%
 knitr::kable()%>%
 kableExtra::kable_styling()%>%
@@ -1004,7 +1004,8 @@ Copy and execute the following code:
 tibble(
   mon = rep(month.name,4),
   revenue = rnorm(48,50000,12),
-  region = rep(c("EAST","WEST","NORTH","SOUTH"),12)
+  region = c(rep("EAST",12),rep("WEST",12),
+             rep("NORTH",12),rep("SOUTH",12))
 ) -> revenue_monthly
 ```
 
@@ -1012,7 +1013,14 @@ Use the `revenue_monthly data`
 
   + Write code that will `widen` the data in a manner that values taken by the `region` column become variables.
 
+Also using `revenue_monthly`,
+
   + Write code to find the monthly total revenue for the `EAST` region.
+
+```{r echo=FALSE}
+countdown::countdown(7,top = 0)
+```
+
 
 ---
 
@@ -1229,7 +1237,7 @@ tibble(
            "Sir Benegal Rama Rau", "K.G. Ambegaonkar", "H.V.R. Ingeyangar", 
            "P.C. Bhattacharaya", "Laxmi kant Jha", "B.N. Adarkar"),
   data_joining = c("1 April,1935", "1 July,1937", "11 August,1943", "1 July,1949",
-                   "14 January,1957", "1 March,1957","1 March 1962","1 July,1967",
+                   "14 January,1957", "1 March,1957","1 March,1962","1 July,1967",
                    "4 May,1970")
 ) -> data_rbi_govs ### data from https://en.wikipedia.org/wiki/List_of_governors_of_the_Reserve_Bank_of_India
 
