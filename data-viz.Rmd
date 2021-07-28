@@ -1,0 +1,580 @@
+---
+title: "R for Data Analysis"
+subtitle: "Data Visualization"  
+author: 
+  - "Ayush Patel"
+date: "28-Jul-2021"
+output:
+  xaringan::moon_reader:
+    css: ['xaringan-themer.css','theme.css']
+    nature:
+      slideNumberFormat: "%current%"
+      highlightStyle: github
+      highlightLines: true
+      ratio: 16:9
+      countIncrementalSlides: true
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  fig.width=9, fig.height=3.5, fig.retina=3,
+  out.width = "100%",
+  cache = FALSE,
+  echo = TRUE,
+  message = FALSE, 
+  warning = FALSE,
+  fig.show = TRUE,
+  hiline = TRUE
+)
+xaringanExtra::use_panelset()
+library(palmerpenguins)
+library(tidyverse)
+library(kableExtra)
+library(knitr)
+library(flair)
+library(flipbookr)
+```
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+style_duo_accent(
+  primary_color = "#ccccff",
+  secondary_color = "#FF961C",
+  inverse_header_color = "#FFFFFF",
+  title_slide_background_image = "images/background1.jpg",
+  title_slide_text_color = "#ffffff"
+)
+```
+
+```{r xaringanExtra,include=FALSE, warning=FALSE,}
+xaringanExtra::use_xaringan_extra(c("clipboard",
+                                    "fit_screen"))
+xaringanExtra::use_extra_styles(hover_code_line = T,
+                                mute_unhighlighted_code = T)
+
+```
+
+layout: true
+
+
+---
+
+name: Introduction
+
+class: left,middle
+
+.pull-left[
+
+## Find me 
+
+[__@ayushbipinpatel__](https://twitter.com/ayushbipinpatel) <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTEyIDUxMjsiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPGc+DQoJPGc+DQoJCTxwYXRoIGQ9Ik01MTIsOTcuMjQ4Yy0xOS4wNCw4LjM1Mi0zOS4zMjgsMTMuODg4LTYwLjQ4LDE2LjU3NmMyMS43Ni0xMi45OTIsMzguMzY4LTMzLjQwOCw0Ni4xNzYtNTguMDE2DQoJCQljLTIwLjI4OCwxMi4wOTYtNDIuNjg4LDIwLjY0LTY2LjU2LDI1LjQwOEM0MTEuODcyLDYwLjcwNCwzODQuNDE2LDQ4LDM1NC40NjQsNDhjLTU4LjExMiwwLTEwNC44OTYsNDcuMTY4LTEwNC44OTYsMTA0Ljk5Mg0KCQkJYzAsOC4zMiwwLjcwNCwxNi4zMiwyLjQzMiwyMy45MzZjLTg3LjI2NC00LjI1Ni0xNjQuNDgtNDYuMDgtMjE2LjM1Mi0xMDkuNzkyYy05LjA1NiwxNS43MTItMTQuMzY4LDMzLjY5Ni0xNC4zNjgsNTMuMDU2DQoJCQljMCwzNi4zNTIsMTguNzIsNjguNTc2LDQ2LjYyNCw4Ny4yMzJjLTE2Ljg2NC0wLjMyLTMzLjQwOC01LjIxNi00Ny40MjQtMTIuOTI4YzAsMC4zMiwwLDAuNzM2LDAsMS4xNTINCgkJCWMwLDUxLjAwOCwzNi4zODQsOTMuMzc2LDg0LjA5NiwxMDMuMTM2Yy04LjU0NCwyLjMzNi0xNy44NTYsMy40NTYtMjcuNTIsMy40NTZjLTYuNzIsMC0xMy41MDQtMC4zODQtMTkuODcyLTEuNzkyDQoJCQljMTMuNiw0MS41NjgsNTIuMTkyLDcyLjEyOCw5OC4wOCw3My4xMmMtMzUuNzEyLDI3LjkzNi04MS4wNTYsNDQuNzY4LTEzMC4xNDQsNDQuNzY4Yy04LjYwOCwwLTE2Ljg2NC0wLjM4NC0yNS4xMi0xLjQ0DQoJCQlDNDYuNDk2LDQ0Ni44OCwxMDEuNiw0NjQsMTYxLjAyNCw0NjRjMTkzLjE1MiwwLDI5OC43NTItMTYwLDI5OC43NTItMjk4LjY4OGMwLTQuNjQtMC4xNi05LjEyLTAuMzg0LTEzLjU2OA0KCQkJQzQ4MC4yMjQsMTM2Ljk2LDQ5Ny43MjgsMTE4LjQ5Niw1MTIsOTcuMjQ4eiIvPg0KCTwvZz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K" width=5%>   
+  
+[__@AyushBipinPatel__](https://github.com/AyushBipinPatel) <img src="data:image/svg+xml;base64,PHN2ZyBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAyNCAyNCIgaGVpZ2h0PSI1MTIiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjUxMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJtMTIgLjVjLTYuNjMgMC0xMiA1LjI4LTEyIDExLjc5MiAwIDUuMjExIDMuNDM4IDkuNjMgOC4yMDUgMTEuMTg4LjYuMTExLjgyLS4yNTQuODItLjU2NyAwLS4yOC0uMDEtMS4wMjItLjAxNS0yLjAwNS0zLjMzOC43MTEtNC4wNDItMS41ODItNC4wNDItMS41ODItLjU0Ni0xLjM2MS0xLjMzNS0xLjcyNS0xLjMzNS0xLjcyNS0xLjA4Ny0uNzMxLjA4NC0uNzE2LjA4NC0uNzE2IDEuMjA1LjA4MiAxLjgzOCAxLjIxNSAxLjgzOCAxLjIxNSAxLjA3IDEuODAzIDIuODA5IDEuMjgyIDMuNDk1Ljk4MS4xMDgtLjc2My40MTctMS4yODIuNzYtMS41NzctMi42NjUtLjI5NS01LjQ2Ni0xLjMwOS01LjQ2Ni01LjgyNyAwLTEuMjg3LjQ2NS0yLjMzOSAxLjIzNS0zLjE2NC0uMTM1LS4yOTgtLjU0LTEuNDk3LjEwNS0zLjEyMSAwIDAgMS4wMDUtLjMxNiAzLjMgMS4yMDkuOTYtLjI2MiAxLjk4LS4zOTIgMy0uMzk4IDEuMDIuMDA2IDIuMDQuMTM2IDMgLjM5OCAyLjI4LTEuNTI1IDMuMjg1LTEuMjA5IDMuMjg1LTEuMjA5LjY0NSAxLjYyNC4yNCAyLjgyMy4xMiAzLjEyMS43NjUuODI1IDEuMjMgMS44NzcgMS4yMyAzLjE2NCAwIDQuNTMtMi44MDUgNS41MjctNS40NzUgNS44MTcuNDIuMzU0LjgxIDEuMDc3LjgxIDIuMTgyIDAgMS41NzgtLjAxNSAyLjg0Ni0uMDE1IDMuMjI5IDAgLjMwOS4yMS42NzguODI1LjU2IDQuODAxLTEuNTQ4IDguMjM2LTUuOTcgOC4yMzYtMTEuMTczIDAtNi41MTItNS4zNzMtMTEuNzkyLTEyLTExLjc5MnoiIGZpbGw9IiMyMTIxMjEiLz48L3N2Zz4=" width=5%>
+  
+  
+[__ayushpatel.netlify.app__](https://ayushpatel.netlify.app/) <img src="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgNTEyLjQxOCA1MTIuNDE4IiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMi40MTggNTEyLjQxOCIgd2lkdGg9IjUxMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJtNDM3LjMzNSA3NS4wODJjLTEwMC4xLTEwMC4xMDItMjYyLjEzNi0xMDAuMTE4LTM2Mi4yNTIgMC0xMDAuMTAzIDEwMC4xMDItMTAwLjExOCAyNjIuMTM2IDAgMzYyLjI1MyAxMDAuMSAxMDAuMTAyIDI2Mi4xMzYgMTAwLjExNyAzNjIuMjUyIDAgMTAwLjEwMy0xMDAuMTAyIDEwMC4xMTctMjYyLjEzNiAwLTM2Mi4yNTN6bS0xMC43MDYgMzI1LjczOWMtMTEuOTY4LTEwLjcwMi0yNC43Ny0yMC4xNzMtMzguMjY0LTI4LjMzNSA4LjkxOS0zMC44MDkgMTQuMjAzLTY0LjcxMiAxNS40NTItOTkuOTU0aDc1LjMwOWMtMy40MDUgNDcuNTAzLTIxLjY1NyA5Mi4wNjQtNTIuNDk3IDEyOC4yODl6bS0zOTMuMzM4LTEyOC4yODloNzUuMzA5YzEuMjQ5IDM1LjI0MiA2LjUzMyA2OS4xNDUgMTUuNDUyIDk5Ljk1NC0xMy40OTQgOC4xNjItMjYuMjk2IDE3LjYzMy0zOC4yNjQgMjguMzM1LTMwLjg0LTM2LjIyNS00OS4wOTEtODAuNzg2LTUyLjQ5Ny0xMjguMjg5em01Mi40OTgtMTYwLjkzNmMxMS45NjggMTAuNzAyIDI0Ljc3IDIwLjE3MyAzOC4yNjQgMjguMzM1LTguOTE5IDMwLjgwOS0xNC4yMDMgNjQuNzEyLTE1LjQ1MiA5OS45NTRoLTc1LjMxYzMuNDA2LTQ3LjUwMiAyMS42NTctOTIuMDYzIDUyLjQ5OC0xMjguMjg5em0xNTQuMDk3IDMxLjcwOWMtMjYuNjIyLTEuOTA0LTUyLjI5MS04LjQ2MS03Ni4wODgtMTkuMjc4IDEzLjg0LTM1LjYzOSAzOS4zNTQtNzguMzg0IDc2LjA4OC04OC45Nzd6bTAgMzIuNzA4djYzLjg3M2gtOTguNjI1YzEuMTMtMjkuODEyIDUuMzU0LTU4LjQzOSAxMi4zNzktODQuNjMyIDI3LjA0MyAxMS44MjIgNTYuMTI3IDE4Ljg4MiA4Ni4yNDYgMjAuNzU5em0wIDk2LjUxOXY2My44NzNjLTMwLjExOSAxLjg3Ny01OS4yMDMgOC45MzctODYuMjQ2IDIwLjc1OS03LjAyNS0yNi4xOTMtMTEuMjQ5LTU0LjgyLTEyLjM3OS04NC42MzJ6bTAgOTYuNTgxdjEwOC4yNTRjLTM2LjczMi0xMC41OTMtNjIuMjQ2LTUzLjMzMy03Ni4wODgtODguOTc2IDIzLjc5Ny0xMC44MTcgNDkuNDY2LTE3LjM3NCA3Ni4wODgtMTkuMjc4em0zMi42NDYgMGMyNi42MjIgMS45MDQgNTIuMjkxIDguNDYxIDc2LjA4OCAxOS4yNzgtMTMuODQxIDM1LjY0LTM5LjM1NCA3OC4zODMtNzYuMDg4IDg4Ljk3NnptMC0zMi43MDh2LTYzLjg3M2g5OC42MjVjLTEuMTMgMjkuODEyLTUuMzU0IDU4LjQzOS0xMi4zNzkgODQuNjMyLTI3LjA0My0xMS44MjItNTYuMTI3LTE4Ljg4Mi04Ni4yNDYtMjAuNzU5em0wLTk2LjUxOXYtNjMuODczYzMwLjExOS0xLjg3NyA1OS4yMDMtOC45MzcgODYuMjQ2LTIwLjc1OSA3LjAyNSAyNi4xOTMgMTEuMjQ5IDU0LjgyIDEyLjM3OSA4NC42MzJ6bTAtOTYuNTgxdi0xMDguMjU0YzM2LjczNCAxMC41OTMgNjIuMjQ4IDUzLjMzOCA3Ni4wODggODguOTc3LTIzLjc5NyAxMC44MTYtNDkuNDY2IDE3LjM3My03Ni4wODggMTkuMjc3em03My4zMi05MS45NTdjMjAuODk1IDkuMTUgNDAuMzg5IDIxLjU1NyA1Ny44NjQgMzYuOTUxLTguMzE4IDcuMzM0LTE3LjA5NSAxMy45ODQtMjYuMjYgMTkuOTMxLTguMTM5LTIwLjE1Mi0xOC41MzYtMzkuNzM2LTMxLjYwNC01Ni44ODJ6bS0yMTAuODkxIDU2Ljg4MmMtOS4xNjUtNS45NDctMTcuOTQxLTEyLjU5Ny0yNi4yNi0xOS45MzEgMTcuNDc1LTE1LjM5NCAzNi45NjktMjcuODAxIDU3Ljg2NC0zNi45NTEtMTMuMDY4IDE3LjE0OC0yMy40NjUgMzYuNzMyLTMxLjYwNCA1Ni44ODJ6bS4wMDEgMjk1Ljk1OGM4LjEzOCAyMC4xNTEgMTguNTM3IDM5LjczNiAzMS42MDQgNTYuODgyLTIwLjg5NS05LjE1LTQwLjM4OS0yMS41NTctNTcuODY0LTM2Ljk1MSA4LjMxOC03LjMzNCAxNy4wOTUtMTMuOTg0IDI2LjI2LTE5LjkzMXptMjQyLjQ5NCAwYzkuMTY1IDUuOTQ3IDE3Ljk0MiAxMi41OTcgMjYuMjYgMTkuOTMtMTcuNDc1IDE1LjM5NC0zNi45NjkgMjcuODAxLTU3Ljg2NCAzNi45NTEgMTMuMDY3LTE3LjE0NCAyMy40NjUtMzYuNzI5IDMxLjYwNC01Ni44ODF6bTI2LjM2Mi0xNjQuMzAyYy0xLjI0OS0zNS4yNDItNi41MzMtNjkuMTQ2LTE1LjQ1Mi05OS45NTQgMTMuNDk0LTguMTYyIDI2LjI5NS0xNy42MzMgMzguMjY0LTI4LjMzNSAzMC44NCAzNi4yMjUgNDkuMDkxIDgwLjc4NiA1Mi40OTcgMTI4LjI4OXoiLz48L3N2Zz4=" width=5%>    
+  
+  
+[__ayush.ap58@gmail.com__](ayush.ap58@gmail.com)<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgNTExLjk3NCA1MTEuOTc0IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MTEuOTc0IDUxMS45NzQ7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxnPg0KCTxnPg0KCQk8Zz4NCgkJCTxwYXRoIGQ9Ik01MTEuODcyLDE5NS43MjVjLTAuMDUzLTAuNTg4LTAuMTctMS4xNjktMC4zNS0xLjczMmMtMC4xMTctMC41MDMtMC4yOC0wLjk5NC0wLjQ4Ni0xLjQ2OA0KCQkJCWMtMC4yMzktMC40NjMtMC41MjUtMC45MDEtMC44NTMtMS4zMDZjLTAuMzI5LTAuNDgxLTAuNzEtMC45MjQtMS4xMzUtMS4zMjNjLTAuMTM3LTAuMTE5LTAuMTk2LTAuMjgyLTAuMzQxLTAuNDAxDQoJCQkJbC04Mi4wNjUtNjMuNzM1VjU5LjcwNGMwLTE0LjEzOC0xMS40NjItMjUuNi0yNS42LTI1LjZoLTkyLjQ3NkwyNzEuNTM5LDUuMzU1Yy05LjE0Ny03LjEzNC0yMS45NzQtNy4xMzQtMzEuMTIxLDANCgkJCQlsLTM3LjAzNSwyOC43NDloLTkyLjQ3NmMtMTQuMTM4LDAtMjUuNiwxMS40NjEtMjUuNiwyNS42djY2LjA1N0wzLjI2OCwxODkuNDk2Yy0wLjE0NSwwLjEyLTAuMjA1LDAuMjgyLTAuMzQxLDAuNDAxDQoJCQkJYy0wLjQyNSwwLjM5OC0wLjgwNiwwLjg0Mi0xLjEzNSwxLjMyM2MtMC4zMjgsMC40MDUtMC42MTQsMC44NDItMC44NTMsMS4zMDZjLTAuMjA3LDAuNDczLTAuMzY5LDAuOTY1LTAuNDg2LDEuNDY4DQoJCQkJYy0wLjE3OCwwLjU1NS0wLjI5NSwxLjEyNy0wLjM1LDEuNzA3YzAsMC4xNzktMC4xMDIsMC4zMzMtMC4xMDIsMC41MTJWNDg2LjM3YzAuMDEyLDUuNDI4LDEuNzY4LDEwLjcwOCw1LjAwOSwxNS4wNjENCgkJCQljMC4wNTEsMC4wNzcsMC4wNiwwLjE3MSwwLjExOSwwLjIzOWMwLjA2LDAuMDY4LDAuMTg4LDAuMTQ1LDAuMjczLDAuMjM5YzQuNzk0LDYuMzA4LDEyLjI1LDEwLjAyNywyMC4xNzMsMTAuMDYxaDQ2MC44DQoJCQkJYzcuOTU0LTAuMDI0LDE1LjQ0MS0zLjc2MSwyMC4yNDEtMTAuMTAzYzAuMDY4LTAuMDg1LDAuMTcxLTAuMTExLDAuMjMtMC4xOTZjMC4wNi0wLjA4NSwwLjA2OC0wLjE2MiwwLjEyLTAuMjM5DQoJCQkJYzMuMjQxLTQuMzU0LDQuOTk3LTkuNjM0LDUuMDA5LTE1LjA2MVYxOTYuMjM3QzUxMS45NzQsMTk2LjA1OCw1MTEuODgxLDE5NS45MDQsNTExLjg3MiwxOTUuNzI1eiBNMjUwLjg1NCwxOC44Mg0KCQkJCWMyLjk4LTIuMzY4LDcuMi0yLjM2OCwxMC4xOCwwbDE5LjY4NiwxNS4yODNoLTQ5LjQ5M0wyNTAuODU0LDE4LjgyeiBNMjcuNzI1LDQ5NC45MDRsMjIzLjEzLTE3My4zMjENCgkJCQljMi45ODItMi4zNjQsNy4xOTktMi4zNjQsMTAuMTgsMGwyMjMuMTg5LDE3My4zMjFIMjcuNzI1eiBNNDk0LjkwOCw0ODEuNkwyNzEuNTM5LDMwOC4xMTdjLTkuMTQ5LTcuMTI4LTIxLjk3Mi03LjEyOC0zMS4xMjEsMA0KCQkJCUwxNy4wNDEsNDgxLjZWMjA5LjIzM0wxNTYuODc3LDMxNy44MmMzLjcyNiwyLjg4OSw5LjA4OCwyLjIxMSwxMS45NzctMS41MTVjMi44ODktMy43MjYsMi4yMTEtOS4wODgtMS41MTUtMTEuOTc3DQoJCQkJTDI1LjI3NiwxOTQuMDE4bDYwLjAzMi00Ni42NTJ2NjUuOTM3YzAsNC43MTMsMy44MjEsOC41MzMsOC41MzMsOC41MzNjNC43MTMsMCw4LjUzMy0zLjgyMSw4LjUzMy04LjUzM3YtMTUzLjYNCgkJCQljMC00LjcxMywzLjgyLTguNTMzLDguNTMzLTguNTMzaDI5MC4xMzNjNC43MTMsMCw4LjUzMywzLjgyLDguNTMzLDguNTMzdjE1My42YzAsNC43MTMsMy44Miw4LjUzMyw4LjUzMyw4LjUzMw0KCQkJCXM4LjUzMy0zLjgyMSw4LjUzMy04LjUzM3YtNjUuOTM3bDYwLjAzMiw0Ni42NTJsLTE0Mi4zMSwxMTAuNTA3Yy0yLjQ0OCwxLjg1NS0zLjcxMSw0Ljg4My0zLjMwNSw3LjkyOHMyLjQxNyw1LjYzNyw1LjI2Niw2Ljc4Ng0KCQkJCWMyLjg0OSwxLjE0OSw2LjA5NiwwLjY3OSw4LjUwMS0xLjIzMmwxNDAuMDgzLTEwOC43NzRWNDgxLjZ6Ii8+DQoJCQk8cGF0aCBkPSJNMzU4LjM3NCwyMDQuNzd2LTM0LjEzM2MwLTU2LjU1NC00NS44NDYtMTAyLjQtMTAyLjQtMTAyLjRjLTU2LjU1NCwwLTEwMi40LDQ1Ljg0Ni0xMDIuNCwxMDIuNA0KCQkJCXM0NS44NDYsMTAyLjQsMTAyLjQsMTAyLjRjNC43MTMsMCw4LjUzMy0zLjgyLDguNTMzLTguNTMzcy0zLjgyLTguNTMzLTguNTMzLTguNTMzYy00Ny4xMjgsMC04NS4zMzMtMzguMjA1LTg1LjMzMy04NS4zMzMNCgkJCQlzMzguMjA1LTg1LjMzMyw4NS4zMzMtODUuMzMzczg1LjMzMywzOC4yMDUsODUuMzMzLDg1LjMzM3YzNC4xMzNjMCw5LjQyNi03LjY0MSwxNy4wNjctMTcuMDY3LDE3LjA2Nw0KCQkJCXMtMTcuMDY3LTcuNjQxLTE3LjA2Ny0xNy4wNjd2LTM0LjEzM2MwLTQuNzEzLTMuODItOC41MzMtOC41MzMtOC41MzNzLTguNTMzLDMuODItOC41MzMsOC41MzMNCgkJCQljMCwxOC44NTEtMTUuMjgyLDM0LjEzMy0zNC4xMzMsMzQuMTMzYy0xOC44NTEsMC0zNC4xMzMtMTUuMjgyLTM0LjEzMy0zNC4xMzNzMTUuMjgyLTM0LjEzMywzNC4xMzMtMzQuMTMzDQoJCQkJYzQuNzEzLDAsOC41MzMtMy44Miw4LjUzMy04LjUzM3MtMy44Mi04LjUzMy04LjUzMy04LjUzM2MtMjIuOTE1LTAuMDUxLTQzLjA3NCwxNS4xMy00OS4zNTQsMzcuMTY4DQoJCQkJYy02LjI4LDIyLjAzOCwyLjg0Nyw0NS41NjUsMjIuMzQ3LDU3LjYwMWMxOS41LDEyLjAzNiw0NC42MjIsOS42NSw2MS41MDctNS44NDNjMS44NTgsMTguMDQ2LDE3LjU0MywzMS40NjQsMzUuNjU5LDMwLjUwNQ0KCQkJCUMzNDQuMjUsMjM3LjkxLDM1OC40MzEsMjIyLjkxMiwzNTguMzc0LDIwNC43N3oiLz4NCgkJPC9nPg0KCTwvZz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K" width=5%>  
+
+]
+
+.pull-right[
+<img src = "https://images.metmuseum.org/CRDImages/ad/original/57258.jpg">
+
+.small[
+Image: [John Biglin in a Single Scull by Thomas Eakins](https://images.metmuseum.org/CRDImages/ad/original/57258.jpg)
+]
+
+]
+---
+
+class: left, middle
+
+.pull-left[
+
+#  Pre-requisite
+
+.big[You....]
+
+understand __different types of objects, how to create objects and assign values to objects__.
+<br>
+
+
+
+ __how to access specific values within an object.__
+<br>
+
+
+
+know __what a function is and how to use a function.__
+<br>
+
+
+know __basics of data wrangling__
+<br>
+
+]
+
+.pull-right[
+<img src = "https://images.metmuseum.org/CRDImages/ad/original/DT84.jpg">
+
+.small[
+[Image:  Lake George by John Frederick Kensett ](https://images.metmuseum.org/CRDImages/ad/original/DT84.jpg)
+]
+]
+---
+
+# Before we get to it..
+
+.big[Continue in the Rmarkdown document you used in the last class or create a new one.]
+
+<br>
+
+Load the following libraries and data
+
+```{r libsload, eval=FALSE}
+library(tidyverse)
+library(palmerpenguins)
+library(nycflights13)
+
+read_csv("https://raw.githubusercontent.com/AyushBipinPatel/R-for-Data-Analysis/main/clean_ccs.csv") -> data_ccs
+```
+
+---
+
+class: top,center
+
+# ggplot2 Package
+
+.left-column[
+
+<img src = "https://raw.githubusercontent.com/rstudio/hex-stickers/master/thumbs/ggplot2.png" width = "350px">
+
+<br>
+
+[ggplot2 logo from RStudio hexstickers repo](https://raw.githubusercontent.com/rstudio/hex-stickers/master/thumbs/ggplot2.png)
+
+]
+
+.column-right[
+
+<img src="https://raw.githubusercontent.com/allisonhorst/stats-illustrations/master/rstats-artwork/ggplot2_exploratory.png" width="350px"/>
+<img src="https://raw.githubusercontent.com/allisonhorst/stats-illustrations/master/rstats-artwork/ggplot2_masterpiece.png" width="350px"/>
+
+<br>
+[Art by @allisonhorst](https://github.com/allisonhorst)
+]
+
+
+---
+
+class: top, left
+
+# The Thought Process
+
+<img src = "images/concept_map_visualization.jpg" width = "1000px" height = "550px">
+
+---
+
+class: left, middle
+
+# What will you learn?
+
+.pull-left[
+
+   Types of geometries and when to use them<br><br>
+   How to map variables in data to aesthetics of a plot<br><br>
+   About the theme of a plot<br><br>
+   Labeling the plot<br><br>
+
+]
+
+.pull-right[
+
+  geom_*() (density, histogram, bar, point, jitter, col, boxplot)<br><br>
+  The aes() (mapping variables to axes, shape, size, colour, fill and alpha of the geom)<br><br>
+  Intro to available themes theme_*()<br><br>
+  The labs() to add title, subtitle, axes labels and caption to the plot.<br><br>
+
+]
+
+---
+
+class: left
+
+
+```{r comp_plot, eval=FALSE, include=FALSE}
+  ggplot(data = penguins)+ # the plot area and data
+  geom_boxplot(
+    aes(species, body_mass_g,
+                   fill = species),
+               alpha = 0.5
+    )+ # geom and aesthetic
+  geom_jitter(
+    aes(species,body_mass_g,
+                  colour = species),
+              alpha = 0.5
+    )+ # another layer with aesthetics
+  theme_bw()+ # theme
+  labs(
+    x = "Species",
+    y = "Body mass in grams",
+    title = "Distribution of Mass of penguins"
+  ) # labels
+```
+
+
+`r chunk_reveal(chunk_name = "comp_plot",title  = "Components of a plot")`
+
+
+???
+
+explain each layer and aes mapping
+---
+class: left,top
+
+# Plotting one continuous variable
+
+.pull-left[
+
+```{r ex_density, include=FALSE}
+ggplot(data = penguins)+
+  geom_density(aes(x = body_mass_g))
+```
+
+```{r f1, echo=FALSE}
+decorate("ex_density") %>% 
+  flair("+") %>% 
+  flair_funs(background = "pink") %>% 
+  flair_args(color = "red")%>%
+  flair_input_vals(color = "CornflowerBlue")%>%
+  knit_print.with_flair()
+```
+]
+
+.pull-right[
+```{r ex_hist, include=FALSE}
+ggplot(data = penguins)+
+  geom_histogram(aes(x = body_mass_g))
+```
+
+```{r f2, echo=FALSE}
+decorate("ex_hist") %>% 
+  flair("+") %>% 
+  flair_funs(background = "pink") %>% 
+  flair_args(color = "red")%>%
+  flair_input_vals(color = "CornflowerBlue")%>%
+  knit_print.with_flair()
+```
+
+]
+
+---
+
+# Activity 1
+
+From the `penguins` data:
+  
+    + Choose a continious variable of your interest
+    + Write code to create a histogram for that variable
+    + Write code to create a density plot for that variable
+    
+
+```{r t1, echo=FALSE}
+countdown::countdown(5,top = 0)
+```
+
+---
+
+class: left, top
+
+# Plotting one discrete variable
+
+```{r ex_bar, include = FALSE}
+ggplot(data = penguins)+
+  geom_bar(aes(x = island))
+```
+
+```{r f3, echo=FALSE}
+decorate("ex_bar") %>% 
+  flair("+") %>% 
+  flair("geom_bar", background = "pink") %>% 
+  flair("aes", background = "pink") %>% 
+  flair("x = island", color = "CornflowerBlue") %>% 
+  knit_print.with_flair()
+```
+
+---
+
+# Activity 2
+
+Use the `data_ccs` (this is the [RBI's consumer confidence survey](https://dbie.rbi.org.in/DBIE/dbie.rbi?site=unitLevelData) (22nd round) 2012-2014. This is a subset of the survey data.)
+
+Write code to create a bar chart for any two discrete variables of your liking. You could choose from:
+
+  + city
+  + age
+  + gender
+  + occupation_of_respondent
+  + annual_income
+  + education_qualification
+  .....
+  
+```{r t2, echo=FALSE}
+countdown::countdown(5,top = 0)
+```
+  
+---
+
+class: left, top
+
+# Plotting two continuous variables
+
+```{r ex_point, include=FALSE}
+ggplot(data = penguins)+ 
+  geom_point(aes(x = bill_length_mm,y = bill_depth_mm))
+```
+
+```{r f4, echo=FALSE}
+decorate("ex_point") %>% 
+  flair("geom_point", background = "pink") %>% 
+  flair("aes", background = "pink") %>% 
+  flair("x = bill_length_mm",
+        color = "CornflowerBlue")%>%
+  flair("y = bill_depth_mm",
+        color = "CornflowerBlue")%>%
+  knit_print.with_flair()
+```
+
+---
+
+# Activity 3 
+
+View the `penguins` data
+
+Write code to plot two continuous variables of you choice and interest.
+
+```{r t3, echo=FALSE}
+countdown::countdown(3,top = 0)
+```
+
+---
+
+class: left, top
+
+## Plotting one continuous and one discrete variable
+
+.yscroll[
+
+.pull-left[
+
+```{r ex_col, include=FALSE}
+penguins %>% 
+  group_by(species) %>% 
+  summarise(
+    avg_body_mass = mean(body_mass_g,na.rm = T)
+  ) %>% 
+  ggplot() +
+  geom_col(aes(species,avg_body_mass))
+```
+
+```{r f_col, echo=FALSE}
+decorate("ex_col") %>% 
+  flair("+") %>% 
+  flair("geom_col", background = "pink") %>% 
+  flair("aes", background = "pink") %>%
+  flair("species,avg_body_mass",color = "CornflowerBlue") %>% 
+  knit_print.with_flair()
+```
+
+]
+
+
+.pull-right[
+
+```{r ex_box, include=FALSE}
+penguins %>% 
+  ggplot() +
+  geom_boxplot(aes(species,body_mass_g))
+```
+
+```{r f_box, echo=FALSE}
+decorate("ex_box") %>% 
+  flair("+") %>% 
+  flair("geom_boxplot", background = "pink") %>% 
+  flair("aes", background = "pink") %>%
+  flair("species,body_mass_g",color = "CornflowerBlue") %>% 
+  knit_print.with_flair()
+```
+
+]
+
+]
+
+---
+
+# Activity 4
+
+Use the `flights` data
+
+Write code to generate following plots:
+
+  + A column chart that show the average departure delays from various origin airports
+  + A box plot that shows distributions of departure delays at various origin airports.
+  
+```{r t4, echo=FALSE}
+countdown::countdown(5,top = 0)
+```
+
+---
+
+
+class: left, top
+
+# Aesthetics of geoms
+
+.yscroll[
+.panelset[
+
+.panel[.panel-name[__fill__]
+
+```{r fill_ex}
+penguins %>% 
+  ggplot()+
+  geom_boxplot(aes(species, body_mass_g,
+                   fill = sex))
+```
+
+]
+
+.panel[.panel-name[__colour__]
+
+```{r col_ex}
+penguins %>% 
+  ggplot()+
+  geom_point(aes(bill_length_mm, bill_depth_mm,
+                 colour = species))
+```
+
+
+]
+
+.panel[.panel-name[__shape__]
+
+```{r shp_ex}
+penguins %>% 
+  ggplot()+
+  geom_point(aes(bill_length_mm, bill_depth_mm,
+                 shape = species))
+```
+
+
+]
+
+.panel[.panel-name[__alpha__]
+
+```{r alp_ex}
+penguins %>% 
+  ggplot()+
+  geom_point(aes(bill_length_mm, bill_depth_mm,
+                 colour = species),
+             alpha = 0.5)
+```
+
+]
+
+.panel[.panel-name[__size__]
+
+```{r siz_ex}
+penguins %>% 
+  ggplot()+
+  geom_point(aes(bill_length_mm, bill_depth_mm,
+                 size = species),
+             alpha = 0.5)
+```
+
+]
+
+]
+
+]
+---
+
+# Activity 5
+
+Replicate these two charts. Chart on the left using `mtcars` and chart on the right using `penguins`.
+
+.pull-left[
+<img src = "images/replicate1.png" width = "1000px" height = "400px">
+]
+
+.pull-right[
+<img src = "images/replicate2.png" width = "1000px" height = "400px">
+]
+
+```{r t5, echo=FALSE}
+countdown::countdown(12, top = 0)
+```
+
+
+---
+class: left, middle
+
+# Plot Labels
+
+.pull-left[
+
+```
+.....
+.....  ## Your awesome plot code
+..... +
+labs(
+title = "Chart title",
+subtitle = "Chart Subtitle",
+x = "x-axis title",
+y = "y-axis title",
+caption = "Chart caption"
+)
+```
+]
+
+.pull-right[
+
+```{r labs_ex, echo=FALSE}
+penguins %>% 
+  ggplot()+
+  geom_point(aes(bill_length_mm, bill_depth_mm,
+                 colour = species),
+             alpha = 0.5)+
+  labs(
+    title = "Chart title",
+    subtitle = "Chart Subtitle",
+    x = "x-axis title",
+    y = "y-axis title",
+    caption = "Chart caption"
+)
+```
+
+
+]
+
+---
+
+# Activity 6
+
+You have made some good charts during this session. 
+
+.big[YAY! great job]
+
+Pick two charts you like the most, and label these appropriately.
+
+---
+
+
+class: center, middle
+
+background-image: url("images/background2.jpg")
+background-size: cover
+
