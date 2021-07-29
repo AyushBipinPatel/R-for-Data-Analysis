@@ -295,6 +295,7 @@ seconds
 ]
 ---
 
+.yscroll[
 
 ```{r}
 datetime <- ymd_hms("2016-07-08 12:34:56")
@@ -311,6 +312,7 @@ yday(datetime)
 wday(datetime)
 
 ```
+]
 
 ---
 
@@ -349,6 +351,7 @@ as.duration(since_demon)
 
 ### Duration Constructors
 
+.yscroll[
 .panelset[
 .panel[.panel-name[constructor]
 
@@ -381,6 +384,8 @@ BUT, be careful of DST.
 
 ]
 ]
+]
+
 ---
 
 # Periods
