@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>R for Data Analysis</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Ayush Patel" />
+    <script src="functions-and-functional-programming_files/header-attrs/header-attrs.js"></script>
+    <link href="functions-and-functional-programming_files/panelset/panelset.css" rel="stylesheet" />
+    <script src="functions-and-functional-programming_files/panelset/panelset.js"></script>
+    <script src="functions-and-functional-programming_files/xaringanExtra_fit-screen/fit-screen.js"></script>
+    <script src="functions-and-functional-programming_files/clipboard/clipboard.min.js"></script>
+    <link href="functions-and-functional-programming_files/xaringanExtra-clipboard/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="functions-and-functional-programming_files/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
+    <link href="functions-and-functional-programming_files/xaringanExtra-extra-styles/xaringanExtra-extra-styles.css" rel="stylesheet" />
+    <link href="functions-and-functional-programming_files/countdown/countdown.css" rel="stylesheet" />
+    <script src="functions-and-functional-programming_files/countdown/countdown.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="theme.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# R for Data Analysis
+## Functions and Functinal Programming
+### Ayush Patel
+### 01-Aug-2021
+
+---
+
+
+
+
+
+
+
+
+layout: true
+
+
+---
+
+name: Introduction
+
+class: left,middle
+
+.pull-left[
+
+## Find me 
+
+[__@ayushbipinpatel__](https://twitter.com/ayushbipinpatel) &lt;img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTEyIDUxMjsiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPGc+DQoJPGc+DQoJCTxwYXRoIGQ9Ik01MTIsOTcuMjQ4Yy0xOS4wNCw4LjM1Mi0zOS4zMjgsMTMuODg4LTYwLjQ4LDE2LjU3NmMyMS43Ni0xMi45OTIsMzguMzY4LTMzLjQwOCw0Ni4xNzYtNTguMDE2DQoJCQljLTIwLjI4OCwxMi4wOTYtNDIuNjg4LDIwLjY0LTY2LjU2LDI1LjQwOEM0MTEuODcyLDYwLjcwNCwzODQuNDE2LDQ4LDM1NC40NjQsNDhjLTU4LjExMiwwLTEwNC44OTYsNDcuMTY4LTEwNC44OTYsMTA0Ljk5Mg0KCQkJYzAsOC4zMiwwLjcwNCwxNi4zMiwyLjQzMiwyMy45MzZjLTg3LjI2NC00LjI1Ni0xNjQuNDgtNDYuMDgtMjE2LjM1Mi0xMDkuNzkyYy05LjA1NiwxNS43MTItMTQuMzY4LDMzLjY5Ni0xNC4zNjgsNTMuMDU2DQoJCQljMCwzNi4zNTIsMTguNzIsNjguNTc2LDQ2LjYyNCw4Ny4yMzJjLTE2Ljg2NC0wLjMyLTMzLjQwOC01LjIxNi00Ny40MjQtMTIuOTI4YzAsMC4zMiwwLDAuNzM2LDAsMS4xNTINCgkJCWMwLDUxLjAwOCwzNi4zODQsOTMuMzc2LDg0LjA5NiwxMDMuMTM2Yy04LjU0NCwyLjMzNi0xNy44NTYsMy40NTYtMjcuNTIsMy40NTZjLTYuNzIsMC0xMy41MDQtMC4zODQtMTkuODcyLTEuNzkyDQoJCQljMTMuNiw0MS41NjgsNTIuMTkyLDcyLjEyOCw5OC4wOCw3My4xMmMtMzUuNzEyLDI3LjkzNi04MS4wNTYsNDQuNzY4LTEzMC4xNDQsNDQuNzY4Yy04LjYwOCwwLTE2Ljg2NC0wLjM4NC0yNS4xMi0xLjQ0DQoJCQlDNDYuNDk2LDQ0Ni44OCwxMDEuNiw0NjQsMTYxLjAyNCw0NjRjMTkzLjE1MiwwLDI5OC43NTItMTYwLDI5OC43NTItMjk4LjY4OGMwLTQuNjQtMC4xNi05LjEyLTAuMzg0LTEzLjU2OA0KCQkJQzQ4MC4yMjQsMTM2Ljk2LDQ5Ny43MjgsMTE4LjQ5Niw1MTIsOTcuMjQ4eiIvPg0KCTwvZz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K" width=5%&gt;   
+  
+[__@AyushBipinPatel__](https://github.com/AyushBipinPatel) &lt;img src="data:image/svg+xml;base64,PHN2ZyBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAyNCAyNCIgaGVpZ2h0PSI1MTIiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjUxMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJtMTIgLjVjLTYuNjMgMC0xMiA1LjI4LTEyIDExLjc5MiAwIDUuMjExIDMuNDM4IDkuNjMgOC4yMDUgMTEuMTg4LjYuMTExLjgyLS4yNTQuODItLjU2NyAwLS4yOC0uMDEtMS4wMjItLjAxNS0yLjAwNS0zLjMzOC43MTEtNC4wNDItMS41ODItNC4wNDItMS41ODItLjU0Ni0xLjM2MS0xLjMzNS0xLjcyNS0xLjMzNS0xLjcyNS0xLjA4Ny0uNzMxLjA4NC0uNzE2LjA4NC0uNzE2IDEuMjA1LjA4MiAxLjgzOCAxLjIxNSAxLjgzOCAxLjIxNSAxLjA3IDEuODAzIDIuODA5IDEuMjgyIDMuNDk1Ljk4MS4xMDgtLjc2My40MTctMS4yODIuNzYtMS41NzctMi42NjUtLjI5NS01LjQ2Ni0xLjMwOS01LjQ2Ni01LjgyNyAwLTEuMjg3LjQ2NS0yLjMzOSAxLjIzNS0zLjE2NC0uMTM1LS4yOTgtLjU0LTEuNDk3LjEwNS0zLjEyMSAwIDAgMS4wMDUtLjMxNiAzLjMgMS4yMDkuOTYtLjI2MiAxLjk4LS4zOTIgMy0uMzk4IDEuMDIuMDA2IDIuMDQuMTM2IDMgLjM5OCAyLjI4LTEuNTI1IDMuMjg1LTEuMjA5IDMuMjg1LTEuMjA5LjY0NSAxLjYyNC4yNCAyLjgyMy4xMiAzLjEyMS43NjUuODI1IDEuMjMgMS44NzcgMS4yMyAzLjE2NCAwIDQuNTMtMi44MDUgNS41MjctNS40NzUgNS44MTcuNDIuMzU0LjgxIDEuMDc3LjgxIDIuMTgyIDAgMS41NzgtLjAxNSAyLjg0Ni0uMDE1IDMuMjI5IDAgLjMwOS4yMS42NzguODI1LjU2IDQuODAxLTEuNTQ4IDguMjM2LTUuOTcgOC4yMzYtMTEuMTczIDAtNi41MTItNS4zNzMtMTEuNzkyLTEyLTExLjc5MnoiIGZpbGw9IiMyMTIxMjEiLz48L3N2Zz4=" width=5%&gt;
+  
+  
+[__ayushpatel.netlify.app__](https://ayushpatel.netlify.app/) &lt;img src="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgNTEyLjQxOCA1MTIuNDE4IiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMi40MTggNTEyLjQxOCIgd2lkdGg9IjUxMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJtNDM3LjMzNSA3NS4wODJjLTEwMC4xLTEwMC4xMDItMjYyLjEzNi0xMDAuMTE4LTM2Mi4yNTIgMC0xMDAuMTAzIDEwMC4xMDItMTAwLjExOCAyNjIuMTM2IDAgMzYyLjI1MyAxMDAuMSAxMDAuMTAyIDI2Mi4xMzYgMTAwLjExNyAzNjIuMjUyIDAgMTAwLjEwMy0xMDAuMTAyIDEwMC4xMTctMjYyLjEzNiAwLTM2Mi4yNTN6bS0xMC43MDYgMzI1LjczOWMtMTEuOTY4LTEwLjcwMi0yNC43Ny0yMC4xNzMtMzguMjY0LTI4LjMzNSA4LjkxOS0zMC44MDkgMTQuMjAzLTY0LjcxMiAxNS40NTItOTkuOTU0aDc1LjMwOWMtMy40MDUgNDcuNTAzLTIxLjY1NyA5Mi4wNjQtNTIuNDk3IDEyOC4yODl6bS0zOTMuMzM4LTEyOC4yODloNzUuMzA5YzEuMjQ5IDM1LjI0MiA2LjUzMyA2OS4xNDUgMTUuNDUyIDk5Ljk1NC0xMy40OTQgOC4xNjItMjYuMjk2IDE3LjYzMy0zOC4yNjQgMjguMzM1LTMwLjg0LTM2LjIyNS00OS4wOTEtODAuNzg2LTUyLjQ5Ny0xMjguMjg5em01Mi40OTgtMTYwLjkzNmMxMS45NjggMTAuNzAyIDI0Ljc3IDIwLjE3MyAzOC4yNjQgMjguMzM1LTguOTE5IDMwLjgwOS0xNC4yMDMgNjQuNzEyLTE1LjQ1MiA5OS45NTRoLTc1LjMxYzMuNDA2LTQ3LjUwMiAyMS42NTctOTIuMDYzIDUyLjQ5OC0xMjguMjg5em0xNTQuMDk3IDMxLjcwOWMtMjYuNjIyLTEuOTA0LTUyLjI5MS04LjQ2MS03Ni4wODgtMTkuMjc4IDEzLjg0LTM1LjYzOSAzOS4zNTQtNzguMzg0IDc2LjA4OC04OC45Nzd6bTAgMzIuNzA4djYzLjg3M2gtOTguNjI1YzEuMTMtMjkuODEyIDUuMzU0LTU4LjQzOSAxMi4zNzktODQuNjMyIDI3LjA0MyAxMS44MjIgNTYuMTI3IDE4Ljg4MiA4Ni4yNDYgMjAuNzU5em0wIDk2LjUxOXY2My44NzNjLTMwLjExOSAxLjg3Ny01OS4yMDMgOC45MzctODYuMjQ2IDIwLjc1OS03LjAyNS0yNi4xOTMtMTEuMjQ5LTU0LjgyLTEyLjM3OS04NC42MzJ6bTAgOTYuNTgxdjEwOC4yNTRjLTM2LjczMi0xMC41OTMtNjIuMjQ2LTUzLjMzMy03Ni4wODgtODguOTc2IDIzLjc5Ny0xMC44MTcgNDkuNDY2LTE3LjM3NCA3Ni4wODgtMTkuMjc4em0zMi42NDYgMGMyNi42MjIgMS45MDQgNTIuMjkxIDguNDYxIDc2LjA4OCAxOS4yNzgtMTMuODQxIDM1LjY0LTM5LjM1NCA3OC4zODMtNzYuMDg4IDg4Ljk3NnptMC0zMi43MDh2LTYzLjg3M2g5OC42MjVjLTEuMTMgMjkuODEyLTUuMzU0IDU4LjQzOS0xMi4zNzkgODQuNjMyLTI3LjA0My0xMS44MjItNTYuMTI3LTE4Ljg4Mi04Ni4yNDYtMjAuNzU5em0wLTk2LjUxOXYtNjMuODczYzMwLjExOS0xLjg3NyA1OS4yMDMtOC45MzcgODYuMjQ2LTIwLjc1OSA3LjAyNSAyNi4xOTMgMTEuMjQ5IDU0LjgyIDEyLjM3OSA4NC42MzJ6bTAtOTYuNTgxdi0xMDguMjU0YzM2LjczNCAxMC41OTMgNjIuMjQ4IDUzLjMzOCA3Ni4wODggODguOTc3LTIzLjc5NyAxMC44MTYtNDkuNDY2IDE3LjM3My03Ni4wODggMTkuMjc3em03My4zMi05MS45NTdjMjAuODk1IDkuMTUgNDAuMzg5IDIxLjU1NyA1Ny44NjQgMzYuOTUxLTguMzE4IDcuMzM0LTE3LjA5NSAxMy45ODQtMjYuMjYgMTkuOTMxLTguMTM5LTIwLjE1Mi0xOC41MzYtMzkuNzM2LTMxLjYwNC01Ni44ODJ6bS0yMTAuODkxIDU2Ljg4MmMtOS4xNjUtNS45NDctMTcuOTQxLTEyLjU5Ny0yNi4yNi0xOS45MzEgMTcuNDc1LTE1LjM5NCAzNi45NjktMjcuODAxIDU3Ljg2NC0zNi45NTEtMTMuMDY4IDE3LjE0OC0yMy40NjUgMzYuNzMyLTMxLjYwNCA1Ni44ODJ6bS4wMDEgMjk1Ljk1OGM4LjEzOCAyMC4xNTEgMTguNTM3IDM5LjczNiAzMS42MDQgNTYuODgyLTIwLjg5NS05LjE1LTQwLjM4OS0yMS41NTctNTcuODY0LTM2Ljk1MSA4LjMxOC03LjMzNCAxNy4wOTUtMTMuOTg0IDI2LjI2LTE5LjkzMXptMjQyLjQ5NCAwYzkuMTY1IDUuOTQ3IDE3Ljk0MiAxMi41OTcgMjYuMjYgMTkuOTMtMTcuNDc1IDE1LjM5NC0zNi45NjkgMjcuODAxLTU3Ljg2NCAzNi45NTEgMTMuMDY3LTE3LjE0NCAyMy40NjUtMzYuNzI5IDMxLjYwNC01Ni44ODF6bTI2LjM2Mi0xNjQuMzAyYy0xLjI0OS0zNS4yNDItNi41MzMtNjkuMTQ2LTE1LjQ1Mi05OS45NTQgMTMuNDk0LTguMTYyIDI2LjI5NS0xNy42MzMgMzguMjY0LTI4LjMzNSAzMC44NCAzNi4yMjUgNDkuMDkxIDgwLjc4NiA1Mi40OTcgMTI4LjI4OXoiLz48L3N2Zz4=" width=5%&gt;    
+  
+  
+[__ayush.ap58@gmail.com__](ayush.ap58@gmail.com)&lt;img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgNTExLjk3NCA1MTEuOTc0IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MTEuOTc0IDUxMS45NzQ7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxnPg0KCTxnPg0KCQk8Zz4NCgkJCTxwYXRoIGQ9Ik01MTEuODcyLDE5NS43MjVjLTAuMDUzLTAuNTg4LTAuMTctMS4xNjktMC4zNS0xLjczMmMtMC4xMTctMC41MDMtMC4yOC0wLjk5NC0wLjQ4Ni0xLjQ2OA0KCQkJCWMtMC4yMzktMC40NjMtMC41MjUtMC45MDEtMC44NTMtMS4zMDZjLTAuMzI5LTAuNDgxLTAuNzEtMC45MjQtMS4xMzUtMS4zMjNjLTAuMTM3LTAuMTE5LTAuMTk2LTAuMjgyLTAuMzQxLTAuNDAxDQoJCQkJbC04Mi4wNjUtNjMuNzM1VjU5LjcwNGMwLTE0LjEzOC0xMS40NjItMjUuNi0yNS42LTI1LjZoLTkyLjQ3NkwyNzEuNTM5LDUuMzU1Yy05LjE0Ny03LjEzNC0yMS45NzQtNy4xMzQtMzEuMTIxLDANCgkJCQlsLTM3LjAzNSwyOC43NDloLTkyLjQ3NmMtMTQuMTM4LDAtMjUuNiwxMS40NjEtMjUuNiwyNS42djY2LjA1N0wzLjI2OCwxODkuNDk2Yy0wLjE0NSwwLjEyLTAuMjA1LDAuMjgyLTAuMzQxLDAuNDAxDQoJCQkJYy0wLjQyNSwwLjM5OC0wLjgwNiwwLjg0Mi0xLjEzNSwxLjMyM2MtMC4zMjgsMC40MDUtMC42MTQsMC44NDItMC44NTMsMS4zMDZjLTAuMjA3LDAuNDczLTAuMzY5LDAuOTY1LTAuNDg2LDEuNDY4DQoJCQkJYy0wLjE3OCwwLjU1NS0wLjI5NSwxLjEyNy0wLjM1LDEuNzA3YzAsMC4xNzktMC4xMDIsMC4zMzMtMC4xMDIsMC41MTJWNDg2LjM3YzAuMDEyLDUuNDI4LDEuNzY4LDEwLjcwOCw1LjAwOSwxNS4wNjENCgkJCQljMC4wNTEsMC4wNzcsMC4wNiwwLjE3MSwwLjExOSwwLjIzOWMwLjA2LDAuMDY4LDAuMTg4LDAuMTQ1LDAuMjczLDAuMjM5YzQuNzk0LDYuMzA4LDEyLjI1LDEwLjAyNywyMC4xNzMsMTAuMDYxaDQ2MC44DQoJCQkJYzcuOTU0LTAuMDI0LDE1LjQ0MS0zLjc2MSwyMC4yNDEtMTAuMTAzYzAuMDY4LTAuMDg1LDAuMTcxLTAuMTExLDAuMjMtMC4xOTZjMC4wNi0wLjA4NSwwLjA2OC0wLjE2MiwwLjEyLTAuMjM5DQoJCQkJYzMuMjQxLTQuMzU0LDQuOTk3LTkuNjM0LDUuMDA5LTE1LjA2MVYxOTYuMjM3QzUxMS45NzQsMTk2LjA1OCw1MTEuODgxLDE5NS45MDQsNTExLjg3MiwxOTUuNzI1eiBNMjUwLjg1NCwxOC44Mg0KCQkJCWMyLjk4LTIuMzY4LDcuMi0yLjM2OCwxMC4xOCwwbDE5LjY4NiwxNS4yODNoLTQ5LjQ5M0wyNTAuODU0LDE4LjgyeiBNMjcuNzI1LDQ5NC45MDRsMjIzLjEzLTE3My4zMjENCgkJCQljMi45ODItMi4zNjQsNy4xOTktMi4zNjQsMTAuMTgsMGwyMjMuMTg5LDE3My4zMjFIMjcuNzI1eiBNNDk0LjkwOCw0ODEuNkwyNzEuNTM5LDMwOC4xMTdjLTkuMTQ5LTcuMTI4LTIxLjk3Mi03LjEyOC0zMS4xMjEsMA0KCQkJCUwxNy4wNDEsNDgxLjZWMjA5LjIzM0wxNTYuODc3LDMxNy44MmMzLjcyNiwyLjg4OSw5LjA4OCwyLjIxMSwxMS45NzctMS41MTVjMi44ODktMy43MjYsMi4yMTEtOS4wODgtMS41MTUtMTEuOTc3DQoJCQkJTDI1LjI3NiwxOTQuMDE4bDYwLjAzMi00Ni42NTJ2NjUuOTM3YzAsNC43MTMsMy44MjEsOC41MzMsOC41MzMsOC41MzNjNC43MTMsMCw4LjUzMy0zLjgyMSw4LjUzMy04LjUzM3YtMTUzLjYNCgkJCQljMC00LjcxMywzLjgyLTguNTMzLDguNTMzLTguNTMzaDI5MC4xMzNjNC43MTMsMCw4LjUzMywzLjgyLDguNTMzLDguNTMzdjE1My42YzAsNC43MTMsMy44Miw4LjUzMyw4LjUzMyw4LjUzMw0KCQkJCXM4LjUzMy0zLjgyMSw4LjUzMy04LjUzM3YtNjUuOTM3bDYwLjAzMiw0Ni42NTJsLTE0Mi4zMSwxMTAuNTA3Yy0yLjQ0OCwxLjg1NS0zLjcxMSw0Ljg4My0zLjMwNSw3LjkyOHMyLjQxNyw1LjYzNyw1LjI2Niw2Ljc4Ng0KCQkJCWMyLjg0OSwxLjE0OSw2LjA5NiwwLjY3OSw4LjUwMS0xLjIzMmwxNDAuMDgzLTEwOC43NzRWNDgxLjZ6Ii8+DQoJCQk8cGF0aCBkPSJNMzU4LjM3NCwyMDQuNzd2LTM0LjEzM2MwLTU2LjU1NC00NS44NDYtMTAyLjQtMTAyLjQtMTAyLjRjLTU2LjU1NCwwLTEwMi40LDQ1Ljg0Ni0xMDIuNCwxMDIuNA0KCQkJCXM0NS44NDYsMTAyLjQsMTAyLjQsMTAyLjRjNC43MTMsMCw4LjUzMy0zLjgyLDguNTMzLTguNTMzcy0zLjgyLTguNTMzLTguNTMzLTguNTMzYy00Ny4xMjgsMC04NS4zMzMtMzguMjA1LTg1LjMzMy04NS4zMzMNCgkJCQlzMzguMjA1LTg1LjMzMyw4NS4zMzMtODUuMzMzczg1LjMzMywzOC4yMDUsODUuMzMzLDg1LjMzM3YzNC4xMzNjMCw5LjQyNi03LjY0MSwxNy4wNjctMTcuMDY3LDE3LjA2Nw0KCQkJCXMtMTcuMDY3LTcuNjQxLTE3LjA2Ny0xNy4wNjd2LTM0LjEzM2MwLTQuNzEzLTMuODItOC41MzMtOC41MzMtOC41MzNzLTguNTMzLDMuODItOC41MzMsOC41MzMNCgkJCQljMCwxOC44NTEtMTUuMjgyLDM0LjEzMy0zNC4xMzMsMzQuMTMzYy0xOC44NTEsMC0zNC4xMzMtMTUuMjgyLTM0LjEzMy0zNC4xMzNzMTUuMjgyLTM0LjEzMywzNC4xMzMtMzQuMTMzDQoJCQkJYzQuNzEzLDAsOC41MzMtMy44Miw4LjUzMy04LjUzM3MtMy44Mi04LjUzMy04LjUzMy04LjUzM2MtMjIuOTE1LTAuMDUxLTQzLjA3NCwxNS4xMy00OS4zNTQsMzcuMTY4DQoJCQkJYy02LjI4LDIyLjAzOCwyLjg0Nyw0NS41NjUsMjIuMzQ3LDU3LjYwMWMxOS41LDEyLjAzNiw0NC42MjIsOS42NSw2MS41MDctNS44NDNjMS44NTgsMTguMDQ2LDE3LjU0MywzMS40NjQsMzUuNjU5LDMwLjUwNQ0KCQkJCUMzNDQuMjUsMjM3LjkxLDM1OC40MzEsMjIyLjkxMiwzNTguMzc0LDIwNC43N3oiLz4NCgkJPC9nPg0KCTwvZz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K" width=5%&gt;  
+
+]
+
+.pull-right[
+&lt;img src = "https://images.metmuseum.org/CRDImages/ad/original/57258.jpg"&gt;
+
+.small[
+Image: [John Biglin in a Single Scull by Thomas Eakins](https://images.metmuseum.org/CRDImages/ad/original/57258.jpg)
+]
+
+]
+---
+
+class: left, middle
+
+.pull-left[
+
+#  Pre-requisite
+
+.big[You....]
+
+understand __different types of objects, how to create objects and assign values to objects__.
+&lt;br&gt;
+
+
+
+ __how to access specific values within an object.__
+&lt;br&gt;
+
+
+
+know __what a function is and how to use a function.__
+&lt;br&gt;
+
+
+know __basics of data wrangling__
+&lt;br&gt;
+
+]
+
+.pull-right[
+&lt;img src = "https://images.metmuseum.org/CRDImages/ad/original/DT84.jpg"&gt;
+
+.small[
+[Image:  Lake George by John Frederick Kensett ](https://images.metmuseum.org/CRDImages/ad/original/DT84.jpg)
+]
+]
+---
+
+# Before we get to it..
+
+.big[Continue in the Rmarkdown document you used in the last class or create a new one.]
+
+&lt;br&gt;
+
+Load the following libraries and data
+
+
+```r
+library(tidyverse)
+```
+
+---
+
+class: middle
+
+# What are we learning today
+
+  + Benefits of writing functions&lt;br&gt;
+  + The essentials of writing a function in R&lt;br&gt;
+  + The essentials of functional programming in R&lt;br&gt;
+
+---
+class: middle
+
+# So, Why to write Functions??
+
+
+Consider the following situation.
+
+  1) You have data of temperature for three cities in India for the last 15 days.&lt;br&gt;&lt;br&gt;
+  2) You need to report the mean, median and standard deviation for each city.&lt;br&gt;&lt;br&gt;
+  
+.big[What do you do??]
+
+---
+
+## Doing this three (many) timees is repetetive and can cause errors
+
+.yscroll[
+.panelset[
+
+.panel[.panel-name[The data]
+
+
+```
+##  [1] 13.815277 12.686295  9.118790 12.978435
+##  [5]  9.814950  9.302869 12.050198  7.611387
+##  [9] 11.655111  7.472173 13.254635 10.787920
+## [13] 11.855153 11.372337  8.026673
+```
+
+```
+##  [1] 30.48028 31.44219 29.71576 32.59336
+##  [5] 27.36240 28.63512 27.07148 24.75385
+##  [9] 29.32735 28.46117 22.82391 33.19491
+## [13] 23.86234 32.08517 38.89910
+```
+
+```
+##  [1] 31.14814 28.73198 34.50706 31.65451
+##  [5] 29.36259 32.55886 35.81564 30.75947
+##  [9] 32.22785 30.47936 28.03198 28.76957
+## [13] 27.58826 24.54597 34.50836
+```
+
+And many more.....
+
+]
+
+.panel[.panel-name[The code]
+
+
+```r
+# Srinagar
+
+mean_srinagar &lt;- mean(srinagar_temp,na.rm = T)
+median_srinagar &lt;- median(srinagar_temp,na.rm = T)
+sd_srinagar &lt;- sd(srinagar_temp,na.rm = T)
+
+# city 2
+mean_mumbai &lt;- mean(mumbai_temp,na.rm = T)
+median_mumbai &lt;- median(mumbai_temp,na.rm = T)
+sd_srinagar &lt;- sd(mumbai_temp,na.rm = T)
+
+# city 3
+mean_kochi &lt;- mean(kochi_temp,na.rm = T)
+median_kochi &lt;- median(kochi_temp,na.rm = T)
+sd_kochi &lt;- sd(kochi_temp,na.rm = T)
+```
+
+
+]
+
+.panel[.panel-name[Making it easier with a function]
+
+
+```r
+city_temp_stats &lt;- function(data_city){
+  
+  
+  list(city_mean = mean(data_city,na.rm = T),
+       city_median =median(data_city,na.rm = T),
+       city_sd =sd(data_city,na.rm = T)
+       ) 
+  
+}
+```
+
+
+```r
+city_temp_stats(srinagar_temp)
+```
+
+```
+## $city_mean
+## [1] 10.78681
+## 
+## $city_median
+## [1] 11.37234
+## 
+## $city_sd
+## [1] 2.106532
+```
+
+```r
+city_temp_stats(mumbai_temp)
+```
+
+```
+## $city_mean
+## [1] 29.38056
+## 
+## $city_median
+## [1] 29.32735
+## 
+## $city_sd
+## [1] 4.088455
+```
+
+```r
+city_temp_stats(kochi_temp)
+```
+
+```
+## $city_mean
+## [1] 30.71264
+## 
+## $city_median
+## [1] 30.75947
+## 
+## $city_sd
+## [1] 3.002143
+```
+
+
+
+]
+
+.panel[.panel-name[Even Better]
+
+We will discuss this at the end but...
+
+
+```r
+list(Srinagar = srinagar_temp,
+     Mumbai = mumbai_temp,
+     Kochi = kochi_temp) -&gt; records_cities
+
+map(records_cities,city_temp_stats)
+```
+
+```
+## $Srinagar
+## $Srinagar$city_mean
+## [1] 10.78681
+## 
+## $Srinagar$city_median
+## [1] 11.37234
+## 
+## $Srinagar$city_sd
+## [1] 2.106532
+## 
+## 
+## $Mumbai
+## $Mumbai$city_mean
+## [1] 29.38056
+## 
+## $Mumbai$city_median
+## [1] 29.32735
+## 
+## $Mumbai$city_sd
+## [1] 4.088455
+## 
+## 
+## $Kochi
+## $Kochi$city_mean
+## [1] 30.71264
+## 
+## $Kochi$city_median
+## [1] 30.75947
+## 
+## $Kochi$city_sd
+## [1] 3.002143
+```
+
+
+]
+
+]
+
+]
+---
+
+class: middle
+
+# Why use fucntions:
+
+  + Names of the functions increase code readability &lt;br&gt;&lt;br&gt;
+  + Changes are easier to handle &lt;br&gt;&lt;br&gt;
+  + Possibilities of errors due to copy pasting are eliminated &lt;br&gt;&lt;br&gt;
+
+---
+class: middle
+
+# When to write a function?
+
+.big[Thumb rule from R4Ds:]
+
+&gt;"If you copy paste a code more than twice, write a funciton."
+
+---
+class: middle
+
+# Writing a good function - guidelines
+
+  + The .big[name] is important - "Choose wisely"&lt;br&gt;&lt;br&gt;
+  + Start with code and then write the function - .big[Convert working code to function]&lt;br&gt;&lt;br&gt;
+  + How many inputs are needed for these operations/code&lt;br&gt;&lt;br&gt;
+
+---
+class: middle
+
+# The syntax
+
+
+```r
+name_function &lt;- function(arg1, arg2 = default_val){
+
+Your operations/code go here
+
+
+}
+```
+
+---
+class: middle
+
+# (...) The Dot-Dot-Dot argument
+
+  + Sometimes the functions that we write are wrapper over other functions.&lt;br&gt;&lt;br&gt;
+  + ... allows us to provide arguments to these wrapped functions without being upfront&lt;br&gt;&lt;br&gt;
+  + Allows to provide arbitrary number of arguments&lt;br&gt;&lt;br&gt;
+
+---
+class: middle
+
+# Lets explore ...
+
+
+```r
+learning_about_3dots &lt;- function(...){
+  list(...)
+}
+
+learning_about_3dots(na.rm = T,fill = "red")
+```
+
+```
+## $na.rm
+## [1] TRUE
+## 
+## $fill
+## [1] "red"
+```
+
+
+---
+
+# Little more exploration
+
+.yscroll[
+
+
+```r
+explore_dot &lt;- function(x,...){
+  
+  list(...)
+  
+  list(
+    x,
+    mean(c(1,2,3,5,2,5,NA)),
+    mean(c(1,2,3,5,2,5,NA), ...),
+    str_c("fefa","fefg", sep = list(...)[["sep"]])
+    ) 
+  }
+
+explore_dot("Dot-Dot-Dot", na.rm = T,sep = "|")
+```
+
+```
+## [[1]]
+## [1] "Dot-Dot-Dot"
+## 
+## [[2]]
+## [1] NA
+## 
+## [[3]]
+## [1] 3
+## 
+## [[4]]
+## [1] "fefa|fefg"
+```
+
+
+]
+---
+
+# Return Values
+
+.big[The last operation is returned by default is not return is specified]
+
+.pull-left[
+
+
+```r
+show_return &lt;- function(){
+  2+2
+  7*5
+}
+
+show_return()
+```
+
+```
+## [1] 35
+```
+
+
+]
+
+.pull-right[
+
+```r
+show_return1 &lt;- function(){
+  2+2 -&gt; a
+  7*5 -&gt; b
+  return(list(a,b))
+}
+
+show_return1()
+```
+
+```
+## [[1]]
+## [1] 4
+## 
+## [[2]]
+## [1] 35
+```
+
+]
+---
+
+# Pipe-able Functions
+
+Two Types of pipe-able functions: .big[transformations and side-effects]
+
+.yscroll[
+
+```r
+show_missings &lt;- function(df) {
+  n &lt;- sum(is.na(df))
+  cat("Missing values: ", n, "\n", sep = "")
+  
+  invisible(df)
+}
+
+show_missings(mtcars)
+```
+
+```
+## Missing values: 0
+```
+
+```r
+x &lt;- show_missings(mtcars) 
+```
+
+```
+## Missing values: 0
+```
+
+```r
+class(x)
+```
+
+```
+## [1] "data.frame"
+```
+
+```r
+dim(x)
+```
+
+```
+## [1] 32 11
+```
+
+```r
+mtcars %&gt;% 
+  show_missings() %&gt;% 
+  mutate(mpg = ifelse(mpg &lt; 20, NA, mpg)) %&gt;% 
+  show_missings() 
+```
+
+```
+## Missing values: 0
+## Missing values: 18
+```
+
+.small[code example from R4DS]
+]
+---
+class: middle
+
+# Going functional
+
+---
+class: middle
+
+# Why Functionals over Loops
+
+  + R is a functional programming languange&lt;br&gt;
+  + Less amount of code&lt;br&gt;
+  + Reduced chances of bugs &lt;br&gt;
+
+
+---
+class: middle
+
+# purrr
+
+```
+"
+How can you solve the problem for a single element of the list? 
+Once you’ve solved that problem, purrr takes care of generalising 
+your solution to every element in the list.
+
+If you’re solving a complex problem, how can you break it down into 
+bite-sized pieces that allow you to advance one small step towards a solution? 
+With purrr, you get lots of small pieces that you can compose together with the pipe.
+
+This structure makes it easier to solve new problems. It also makes it easier to 
+understand your solutions to old problems when you re-read your old code.
+"
+```
+.small[from R4DS]
+
+---
+
+class: middle
+
+# How are we going to do this?
+
+  + Look at working with lists - I Know. Yes, again&lt;br&gt;&lt;br&gt;
+  + Apply functions on lists,vecs&lt;br&gt;&lt;br&gt;
+  + Modify function behaviour&lt;br&gt;&lt;br&gt;
+
+---
+
+# Working with Lists
+
+.yscroll[
+
+.panelset[
+
+.panel[.panel-name[Filter Lists]
+
+.big[Selecting By name or index]
+
+
+```r
+ex_list &lt;- list(
+  a = c(1,2,5,3,5,2,3),
+  names = c("yellow","red"), 
+  b = c(T,F,F,F,T)
+  )
+
+ex_list
+```
+
+```
+## $a
+## [1] 1 2 5 3 5 2 3
+## 
+## $names
+## [1] "yellow" "red"   
+## 
+## $b
+## [1]  TRUE FALSE FALSE FALSE  TRUE
+```
+
+```r
+pluck(ex_list,"a")
+```
+
+```
+## [1] 1 2 5 3 5 2 3
+```
+
+.big[Selecting elements that pass a test]
+
+
+```r
+keep(ex_list,is.character)
+```
+
+```
+## $names
+## [1] "yellow" "red"
+```
+
+.big[Discard elements that pass a test]
+
+
+```r
+discard(ex_list,is.character)
+```
+
+```
+## $a
+## [1] 1 2 5 3 5 2 3
+## 
+## $b
+## [1]  TRUE FALSE FALSE FALSE  TRUE
+```
+
+
+
+]
+.panel[.panel-name[Summarise Lists]
+
+.big[Do all elements pass a test]
+
+
+```r
+every(ex_list, is.logical)
+```
+
+```
+## [1] FALSE
+```
+
+.big[Do some elements pass a test]
+
+
+```r
+some(ex_list, is.logical)
+```
+
+```
+## [1] TRUE
+```
+
+.big[Does the list contain an element]
+
+
+```r
+has_element(ex_list, c("yellow","red"))
+```
+
+```
+## [1] TRUE
+```
+
+
+]
+
+]
+
+]
+
+---
+
+# Applying Functions
+
+.yscroll[
+
+
+
+```r
+list_df &lt;- list(penguins,mtcars,starwars)
+
+map(list_df,dim)
+```
+
+```
+## [[1]]
+## [1] 344   8
+## 
+## [[2]]
+## [1] 32 11
+## 
+## [[3]]
+## [1] 87 14
+```
+
+.big[Making some modification]
+
+
+```r
+custom_dim &lt;- function(df){
+  dimension &lt;- dim(df)
+  
+  return(paste("There are", dimension[1],
+                "rows and", dimension[2],"columns",sep = " "))
+}
+
+map(list_df,custom_dim)
+```
+
+```
+## [[1]]
+## [1] "There are 344 rows and 8 columns"
+## 
+## [[2]]
+## [1] "There are 32 rows and 11 columns"
+## 
+## [[3]]
+## [1] "There are 87 rows and 14 columns"
+```
+
+```r
+map_chr(list_df,custom_dim)
+```
+
+```
+## [1] "There are 344 rows and 8 columns"
+## [2] "There are 32 rows and 11 columns"
+## [3] "There are 87 rows and 14 columns"
+```
+
+
+]
+
+---
+
+# Two or more arguments in a function?
+
+
+```r
+gen_randon_numbers &lt;- function(avg,std_dev,num_obs){
+  rnorm(n = num_obs,mean = avg,sd = std_dev)
+}
+
+tibble(
+  inp_avg = c(25,35,65),
+  inp_std_dev = c(2,1,3),
+  inp_num_obs = c(10,20,30)
+  
+) -&gt; inputs_gen
+
+
+  pmap(.l = list(num_obs = inputs_gen$inp_num_obs,
+                 std_dev = inputs_gen$inp_std_dev,
+                 avg = inputs_gen$inp_avg),.f = gen_randon_numbers)
+```
+
+```
+## [[1]]
+##  [1] 23.71207 24.32634 27.46357 25.99908
+##  [5] 28.17351 22.62663 21.90107 27.39603
+##  [9] 23.65852 26.56170
+## 
+## [[2]]
+##  [1] 34.79807 34.82868 34.79753 34.56442
+##  [5] 35.13221 34.00355 33.18961 34.78736
+##  [9] 36.00751 36.49027 36.54502 33.56227
+## [13] 34.93810 37.25912 33.93805 36.51225
+## [17] 35.93702 34.66365 35.38844 35.18458
+## 
+## [[3]]
+##  [1] 65.23373 63.87384 60.29239 64.80168
+##  [5] 65.69122 64.21255 62.31801 65.99379
+##  [9] 68.16712 61.99978 62.59234 63.61518
+## [13] 65.09338 62.38887 70.22065 69.22950
+## [17] 68.14155 66.35073 62.36796 63.52410
+## [21] 62.46680 60.38797 64.56180 61.53930
+## [25] 64.62634 66.93442 69.04421 62.59741
+## [29] 66.87667 66.58867
+```
+
+---
+
+# What happens when there is an error
+
+.yscroll[
+
+.panelset[
+
+.panel[.panel-name[What if there is error while running]
+
+
+```r
+ex_list
+```
+
+```
+## $a
+## [1] 1 2 5 3 5 2 3
+## 
+## $names
+## [1] "yellow" "red"   
+## 
+## $b
+## [1]  TRUE FALSE FALSE FALSE  TRUE
+```
+
+```r
+map(ex_list,sum,na.rm =T)
+```
+
+```
+## Error in .Primitive("sum")(..., na.rm = na.rm): invalid 'type' (character) of argument
+```
+
+]
+
+.panel[.panel-name[Approach safely]
+
+
+```r
+map(ex_list,safely(sum),na.rm =T)
+```
+
+```
+## $a
+## $a$result
+## [1] 21
+## 
+## $a$error
+## NULL
+## 
+## 
+## $names
+## $names$result
+## NULL
+## 
+## $names$error
+## &lt;simpleError in .Primitive("sum")(..., na.rm = na.rm): invalid 'type' (character) of argument&gt;
+## 
+## 
+## $b
+## $b$result
+## [1] 2
+## 
+## $b$error
+## NULL
+```
+
+]
+
+]
+
+
+]
+
+---
+
+# Activity 1 
+
+Copy the following code
+
+
+```r
+data_for_purr &lt;- list(
+  a = c(1,52,2,3,58,2,6,2,NA),
+  b = c("Yellow","green","red"),
+  c = c(1,0,12,5,1,3,58,3,6)
+)
+```
+
+Write a function that gives the of the unique values, length and number of missing values for a vector.
+
+Apply this function on the object `data_for_purrr`
+
+<div class="countdown" id="timer_610685c6" style="top:0;right:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+
+
+---
+class: center, middle
+
+background-image: url("images/background2.jpg")
+background-size: cover
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": "%current%",
+"highlightStyle": "github",
+"highlightLines": true,
+"ratio": "16:9",
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
