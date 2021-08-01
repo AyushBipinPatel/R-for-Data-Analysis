@@ -28,7 +28,7 @@ class: center, middle, inverse, title-slide
 # R for Data Analysis
 ## Strings and Factors
 ### Ayush Patel
-### 229-Jul-2021
+### 29-Jul-2021
 
 ---
 
@@ -220,9 +220,7 @@ str_c("Dr", c("Strange","Banner","Stark"),"is a genius", sep = " ")
 ```
 
 ```
-## [1] "Dr Strange is a genius"
-## [2] "Dr Banner is a genius" 
-## [3] "Dr Stark is a genius"
+## [1] "Dr Strange is a genius" "Dr Banner is a genius"  "Dr Stark is a genius"
 ```
 
 ---
@@ -285,7 +283,7 @@ Write code to :
   + Subset all the strings in the `sentences` object starting from the center of the string till the end of the string.
 
 
-<div class="countdown" id="timer_61029d9c" style="top:0;right:0;" data-warnwhen="0">
+<div class="countdown" id="timer_6106441c" style="top:0;right:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -306,8 +304,8 @@ class: center, middle
 str_view_all("apple",".")
 ```
 
-<div id="htmlwidget-795f34afca7597659d48" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-795f34afca7597659d48">{"x":{"html":"<ul>\n  <li><span class='match'>a<\/span><span class='match'>p<\/span><span class='match'>p<\/span><span class='match'>l<\/span><span class='match'>e<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-5adf4b5a1a314b88cf46" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-5adf4b5a1a314b88cf46">{"x":{"html":"<ul>\n  <li><span class='match'>a<\/span><span class='match'>p<\/span><span class='match'>p<\/span><span class='match'>l<\/span><span class='match'>e<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -323,8 +321,8 @@ str_view_all("apple",".")
 str_view(c("Atoms","are","the","smallest","building","blocks","of","matter"),"^a|A")
 ```
 
-<div id="htmlwidget-aa3011408e779ce7f585" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-aa3011408e779ce7f585">{"x":{"html":"<ul>\n  <li><span class='match'>A<\/span>toms<\/li>\n  <li><span class='match'>a<\/span>re<\/li>\n  <li>the<\/li>\n  <li>smallest<\/li>\n  <li>building<\/li>\n  <li>blocks<\/li>\n  <li>of<\/li>\n  <li>matter<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-c202f41bf6b2713544a3" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c202f41bf6b2713544a3">{"x":{"html":"<ul>\n  <li><span class='match'>A<\/span>toms<\/li>\n  <li><span class='match'>a<\/span>re<\/li>\n  <li>the<\/li>\n  <li>smallest<\/li>\n  <li>building<\/li>\n  <li>blocks<\/li>\n  <li>of<\/li>\n  <li>matter<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -340,8 +338,8 @@ str_view(c("Atoms","are","the","smallest","building","blocks","of","matter"),"^a
 str_view(c("Atoms","are","the","smallest","building","blocks","of","matter"),"(e|f)$")
 ```
 
-<div id="htmlwidget-a6a29d410e20ac2eb989" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-a6a29d410e20ac2eb989">{"x":{"html":"<ul>\n  <li>Atoms<\/li>\n  <li>ar<span class='match'>e<\/span><\/li>\n  <li>th<span class='match'>e<\/span><\/li>\n  <li>smallest<\/li>\n  <li>building<\/li>\n  <li>blocks<\/li>\n  <li>o<span class='match'>f<\/span><\/li>\n  <li>matter<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-d29db85c99e0d5530562" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d29db85c99e0d5530562">{"x":{"html":"<ul>\n  <li>Atoms<\/li>\n  <li>ar<span class='match'>e<\/span><\/li>\n  <li>th<span class='match'>e<\/span><\/li>\n  <li>smallest<\/li>\n  <li>building<\/li>\n  <li>blocks<\/li>\n  <li>o<span class='match'>f<\/span><\/li>\n  <li>matter<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -358,7 +356,7 @@ Use `words` object, create regular expressions that find all words that:
 
 .small[question tweaked from R4DS]
 
-<div class="countdown" id="timer_61029d13" style="top:0;right:0;" data-warnwhen="0">
+<div class="countdown" id="timer_61064505" style="top:0;right:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -402,8 +400,7 @@ str4
 ```
 
 ```
-## [1] "Very good" "Bad"       "Very Bad" 
-## [4] "Good"      "OK"
+## [1] "Very good" "Bad"       "Very Bad"  "Good"      "OK"
 ```
 
 ```r
@@ -411,8 +408,7 @@ sort(str4)
 ```
 
 ```
-## [1] "Bad"       "Good"      "OK"       
-## [4] "Very Bad"  "Very good"
+## [1] "Bad"       "Good"      "OK"        "Very Bad"  "Very good"
 ```
 
 ```r
@@ -424,8 +420,7 @@ fact1
 ```
 
 ```
-## [1] Very good Bad       Very Bad  Good     
-## [5] OK       
+## [1] Very good Bad       Very Bad  Good      OK       
 ## Levels: Very good Good OK Bad Very Bad
 ```
 
@@ -434,8 +429,7 @@ sort(fact1)
 ```
 
 ```
-## [1] Very good Good      OK        Bad      
-## [5] Very Bad 
+## [1] Very good Good      OK        Bad       Very Bad 
 ## Levels: Very good Good OK Bad Very Bad
 ```
 
@@ -458,14 +452,10 @@ levels(gss_cat$rincome)
 ```
 
 ```
-##  [1] "No answer"      "Don't know"    
-##  [3] "Refused"        "$25000 or more"
-##  [5] "$20000 - 24999" "$15000 - 19999"
-##  [7] "$10000 - 14999" "$8000 to 9999" 
-##  [9] "$7000 to 7999"  "$6000 to 6999" 
-## [11] "$5000 to 5999"  "$4000 to 4999" 
-## [13] "$3000 to 3999"  "$1000 to 2999" 
-## [15] "Lt $1000"       "Not applicable"
+##  [1] "No answer"      "Don't know"     "Refused"        "$25000 or more"
+##  [5] "$20000 - 24999" "$15000 - 19999" "$10000 - 14999" "$8000 to 9999" 
+##  [9] "$7000 to 7999"  "$6000 to 6999"  "$5000 to 5999"  "$4000 to 4999" 
+## [13] "$3000 to 3999"  "$1000 to 2999"  "Lt $1000"       "Not applicable"
 ```
 
 &lt;br&gt;

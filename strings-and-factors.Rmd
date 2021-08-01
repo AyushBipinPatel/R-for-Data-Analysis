@@ -3,7 +3,7 @@ title: "R for Data Analysis"
 subtitle: "Strings and Factors"  
 author: 
   - "Ayush Patel"
-date: "229-Jul-2021"
+date: "29-Jul-2021"
 output:
   xaringan::moon_reader:
     css: ['xaringan-themer.css','theme.css']

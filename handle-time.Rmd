@@ -3,7 +3,7 @@ title: "R for Data Analysis"
 subtitle: "Handling date and time"  
 author: 
   - "Ayush Patel"
-date: "28-Jul-2021"
+date: "29-Jul-2021"
 output:
   xaringan::moon_reader:
     css: ['xaringan-themer.css','theme.css']
