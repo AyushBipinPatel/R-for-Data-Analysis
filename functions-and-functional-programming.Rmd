@@ -558,6 +558,7 @@ map_chr(list_df,custom_dim)
 
 # Two or more arguments in a function?
 
+.yscroll[
 ```{r}
 gen_randon_numbers <- function(avg,std_dev,num_obs){
   rnorm(n = num_obs,mean = avg,sd = std_dev)
@@ -576,6 +577,8 @@ tibble(
                  avg = inputs_gen$inp_avg),.f = gen_randon_numbers)
   
 ```
+
+]
 
 ---
 
