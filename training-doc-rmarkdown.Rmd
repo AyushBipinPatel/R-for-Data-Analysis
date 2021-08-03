@@ -1,0 +1,72 @@
+---
+title: "Training Doc Rmarkdown" # This section is called the YAML
+author: "Enter your name here"  # This section is called the YAML
+date: "03/08/2021"              # This section is called the YAML 
+output: html_document           # This section is called the YAML
+---
+
+
+Hello! This is a Rmd document.
+
+In Rmd documents you can include your text, code and output.
+
+Following are some useful markdown syntax
+
+# Heading
+
+## Heading 2
+
+### Heading 3
+
+__This text will be rendered bold__ and **So will this**
+
+_This text will be rendered italics_ and *So will this*
+
+
+You can also make lists:
+
+ + this is the first way
+ + you can add stuff 
+ + for a bullet list
+  + and create sub-lists
+  
+  1. Numbered lists can be created as well
+  2. This works too
+  
+
+You can also include links to text like this [link here for learning markdown syntax](https://commonmark.org/help/tutorial/)
+
+Pictures can be included in two ways, by providing a link or by providing an address on your local machine
+
+![text related to the picture can go here](https://github.com/AyushBipinPatel/Fundatmentals-of-Data-Analysis-Using-R/blob/main/images/concept_map_visualization.jpg) 
+
+  
+>This is how one can create block quotes
+
+below is a way to write code chunks (you can name your code chunks, ask me why?):
+
+```{r chunk-1}
+library(tidyverse)
+library(palmerpenguins)
+glimpse(penguins)
+```
+
+
+This is how you can write in line code, comes in very handy. There are `r nrow(penguins)` observations in the penguins data.
+
+Following is the way to create a page break: 
+
+
+------------
+
+
+A convenient way to add small had written Tables can be :
+
+Column1  |  Column2
+-------- | --------
+value1   |  value2
+Value3   |  value4
+
+You can link a phrase to foonotes [like this][^1]
+
+[^1]: This is a footnote
