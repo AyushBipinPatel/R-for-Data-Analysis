@@ -1,0 +1,91 @@
+---
+title: "example parameterised"
+author: "Ayush Patel"
+date: "03/08/2021"
+output: html_document
+params:
+  type: "Gentoo"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# `r params$type` Penguins Analysis
+
+We will look into following:
+
+  + Density of
+    + Flipper length
+    + Bill depth
+    + Bill length
+    + Body mass
+  + Relation between:
+    + Body mass vs Filpper length
+    + Body mass vs bill length
+    
+```{r libs, include=FALSE}
+library(tidyverse)
+library(palmerpenguins)
+```
+     
+```{r fun_den, include=FALSE}
+plot_density <- function(data_name, vec_name){
+  
+  data_name %>% 
+    ggplot(aes(.data[[vec_name]]))+
+    geom_density()+
+    theme_bw()
+  
+}
+```
+     
+```{r fun_scat, include=FALSE}
+plot_scatter <- function(data_name, vec1_name,vec2_name){
+  
+  data_name %>% 
+    ggplot(aes(.data[[vec1_name]],
+               .data[[vec2_name]]))+
+    geom_jitter()+
+    theme_bw()
+  
+}
+```
+
+## Density - Flipper length
+
+```{r plt-flip-len, echo=FALSE}
+plot_density(penguins,"flipper_length_mm")
+```
+
+## Density - Bill length
+
+```{r plt-bill-len, echo=FALSE}
+plot_density(penguins,"bill_length_mm")
+```
+
+
+## Density - Bill depth
+
+```{r plt-bill-dep, echo=FALSE}
+plot_density(penguins,"bill_depth_mm")
+```
+
+## Density - Body Mass
+
+```{r plt-body-mass, echo=FALSE}
+plot_density(penguins,"body_mass_g")
+```
+
+## Scatter - Body Mass vs Flipper length
+
+```{r plt-scat-b-f, echo=FALSE}
+plot_scatter(penguins, "body_mass_g","flipper_length_mm")
+```
+
+
+## Scatter - Body Mass vs Bill length
+
+```{r plt-scat-b-b, echo=FALSE}
+plot_scatter(penguins, "body_mass_g","bill_length_mm")
+```
