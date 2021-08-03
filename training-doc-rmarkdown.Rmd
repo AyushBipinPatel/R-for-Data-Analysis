@@ -67,6 +67,6 @@ Column1  |  Column2
 value1   |  value2
 Value3   |  value4
 
-You can link a phrase to foonotes [like this][^1]
+You can link a phrase to footnotes like this[^1]
 
 [^1]: This is a footnote
