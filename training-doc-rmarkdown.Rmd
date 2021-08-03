@@ -52,6 +52,26 @@ glimpse(penguins)
 ```
 
 
+```{r results='markup'}
+2+2
+#markuop
+message("gfegfea")
+```
+
+```{r results='asis'}
+2+2
+# as is
+message("gfegfea")
+```
+
+```{r}
+2+2
+
+message("gfegfea")
+```
+
+
+
 This is how you can write in line code, comes in very handy. There are `r nrow(penguins)` observations in the penguins data.
 
 Following is the way to create a page break: 
