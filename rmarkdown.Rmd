@@ -162,7 +162,7 @@ class: middle
 # Anatomy of a code chunk
 
 ````markdown
-`r ''````{r, chunk-label, results='hide', fig.height=4}
+`r ''````{r chunk-label, results='hide', fig.height=4}
 
 
 `r ""````
@@ -182,7 +182,7 @@ class: middle
   + Create three code chunks<br><br>
   + In the first code chunk load `tidyverse` and `palmerpenguins` libraries<br><br>
   + In the second code chunk write a code to count species in palmerpenguins, .big[set 'echo = TRUE']<br><br>
-  + In the second code chunk write a code to count island in palmerpenguins, .big[set 'echo=FALSE']<br><br>
+  + In the third code chunk write a code to count island in palmerpenguins, .big[set 'echo=FALSE']<br><br>
   + .big[Knit the document]<br><br>
 
 ---
@@ -212,7 +212,7 @@ class: middle
 
   .big[The eval option can be set to TRUE or FALSE]. 
   
-  _Setting it to true means that this particular chunk will not be executed_
+  _Setting it to false means that this particular chunk will not be executed_
   
   This is usually used to display code, like in much of my slides.
 
@@ -241,7 +241,7 @@ penguins %>%
   labs(
     x= "Bill depth (mm)",
     y= "Bill length (mm)"
-  )
+  )+
   theme_minimal()
 
 ```
