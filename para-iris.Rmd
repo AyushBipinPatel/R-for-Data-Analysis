@@ -1,0 +1,26 @@
+---
+title: "again para"
+author: "Ayush Patel"
+date: "04/08/2021"
+output: html_document
+params:
+  type: "setosa"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r include=FALSE}
+library(tidyverse)
+```
+
+# `r params$type`
+
+```{r}
+iris %>% 
+  filter(Species == params$type) %>% 
+  ggplot()+
+  geom_jitter(aes(Sepal.Length,Sepal.Width))
+```
+

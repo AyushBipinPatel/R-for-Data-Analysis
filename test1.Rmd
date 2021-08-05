@@ -1,0 +1,29 @@
+---
+title: "test"
+author: "Ayush Patel"
+date: "04/08/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r libs, include=FALSE}
+library(tidyverse)
+library(palmerpenguins)
+```
+
+```{r  results='markup',fig.align = 'left', fig.width=10,fig.cap='Penguin Bill length vs Bill Depth'}
+
+penguins %>% 
+  ggplot(aes(bill_length_mm,bill_depth_mm))+
+  geom_jitter(aes(colour = species),alpha = 0.8)+
+  scale_colour_manual(values = c("#2bc846","#4ec2f3","#ffc740"))+
+  labs(
+    x= "Bill depth (mm)",
+    y= "Bill length (mm)"
+  )
+  theme_minimal()
+```

@@ -4,7 +4,7 @@ author: "Ayush Patel"
 date: "03/08/2021"
 output: html_document
 params:
-  type: "Gentoo"
+  type: "Chinstrap"
 ---
 
 ```{r setup, include=FALSE}
@@ -28,11 +28,14 @@ We will look into following:
 library(tidyverse)
 library(palmerpenguins)
 ```
+
+
      
 ```{r fun_den, include=FALSE}
 plot_density <- function(data_name, vec_name){
   
   data_name %>% 
+    filter(species == params$type) %>% 
     ggplot(aes(.data[[vec_name]]))+
     geom_density()+
     theme_bw()
@@ -44,6 +47,7 @@ plot_density <- function(data_name, vec_name){
 plot_scatter <- function(data_name, vec1_name,vec2_name){
   
   data_name %>% 
+    filter(species == params$type) %>% 
     ggplot(aes(.data[[vec1_name]],
                .data[[vec2_name]]))+
     geom_jitter()+
@@ -89,3 +93,4 @@ plot_scatter(penguins, "body_mass_g","flipper_length_mm")
 ```{r plt-scat-b-b, echo=FALSE}
 plot_scatter(penguins, "body_mass_g","bill_length_mm")
 ```
+

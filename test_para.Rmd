@@ -1,0 +1,18 @@
+---
+title: "para problems"
+author: "Ayush Patel"
+date: "04/08/2021"
+output: html_document
+params:
+  par1: 25
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+params$par1
+```
+
