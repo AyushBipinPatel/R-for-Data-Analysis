@@ -616,8 +616,8 @@ plot_scatter(penguins,"body_mass_g","bill_length_mm")
 
 .left-column[
 
-Make a small shiny app that produces a plot(ggplot) by allowing a user to choose variables.
-use the Iris data. Try `r ?iris` in your console to get a sense of the data.
+Make a small shiny app that produces a plot(ggplot) by allowing a user to choose variables.<br><br>
+use the Iris data.<br><br> Try `?iris` in your console to get a sense of the data.
 
 ]
 
