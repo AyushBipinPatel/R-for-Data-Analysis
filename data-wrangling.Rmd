@@ -1056,7 +1056,7 @@ using animations by [Garrick Aden-Buie](https://twitter.com/grrrck) for teaching
 .panel[.panel-name[Syntax]
 
 > *_join( df1, df2,
-by = c("df1_var1" = "df2_var2"))
+by = join_by(df1_var1 == df2_var2))
 ]
 
 .panel[.panel-name[An Example]
@@ -1082,7 +1082,7 @@ emp_personal_info
 
 ```{r}
 left_join(emp_details,emp_personal_info,
-          by = c("emp_id" = "emp_unique_num"))
+          by = join_by(emp_id == emp_unique_num))
 ```
 
 <br>
@@ -1091,21 +1091,21 @@ left_join(emp_details,emp_personal_info,
 
 ```{r}
 right_join(emp_details,emp_personal_info,
-          by = c("emp_id" = "emp_unique_num"))
+          by = join_by(emp_id == emp_unique_num))
 ```
 
 ### Inner join
 
 ```{r}
 inner_join(emp_details,emp_personal_info,
-          by = c("emp_id" = "emp_unique_num"))
+          by = join_by(emp_id == emp_unique_num))
 ```
 
 ### Full Join
 
 ```{r}
 full_join(emp_details,emp_personal_info,
-          by = c("emp_id" = "emp_unique_num"))
+          by = join_by(emp_id == emp_unique_num))
 ```
 
 <br>
